@@ -19,29 +19,46 @@ projection(modis) <- CRS("+proj=longlat +datum=WGS84")
 coordinates(viirs) <- ~longitude+latitude
 projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
 
-setwd("c:/Users/Ignac/Downloads/SNASPE_versión 25092017.1/")
-myShape <- readOGR("chile.shp")
+setwd("Z:/GEODATABASE/VECTOR/Chile_utm19/chile_utm19/chile_continental_utm19/")
+myShape <- readOGR("chile_wgs84.shp")
 projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
 
 st_mod <- modis[myShape, ]
 st_vii <- viirs[myShape, ]
 
-setwd("d:/data/")
-myASP <- readOGR("snaspe_wgs84_simplify.shp")
+setwd("Z:/GEODATABASE/VECTOR/SNASPE_simplify/")
+myASP <- readOGR("SNASPE_wgs84.shp")
 projection(myASP)<- CRS("+proj=longlat +datum=WGS84")
 
-##st<-spTransform(st, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
-##myASP<-spTransform(myASP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+st_mod_utm<-spTransform(st_mod, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+myASP_utm<-spTransform(myASP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+
+dist.mod<-as.data.frame(gDistance(myASP_utm, st_mod_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+nASP<-myASP_utm@data[3]
+colnames(dist.mod)<-nASP[,1]
+dist.modis <- cbind(st_mod_utm@data, dist.mod)
+dist.modis <- cbind(st_mod_utm@coords, dist.modis)
+dist.modis <- cbind(ID=row.names(dist.modis), dist.modis)
 
 
-dist.mod <- geosphere::dist2Line(p = st_mod, line = myASP)
-dist.modis <- cbind(st_mod, dist.mod)
-dist.vii <- geosphere::dist2Line(p = st_vii, line = myASP)
-dist.viis <- cbind(st_vii, dist.vii)
+# i=115
+# z<-subset(dist.modis,dist.modis[,i]<26000)
+# colnames(z)[which(z[15:115]<26000, arr.ind = T)] 
+# 
+# Map(`[`, list(names(z[,15:115])), split(col(z[,15:115])[z[,15:115] <15000], row(z[,15:115])[z[,15:115] <15000]))
 
 
-sdist.mod<-subset(dist.modis,dist.modis$distance<10000)
+#aqui hay un probelma!!!!!!!!!!!!!!!!!!!!!!
+sdist.mod<-NULL
+for (i in 15:115){
+  z<-subset(dist.modis,dist.modis[,i]<14000)
+  n<-Map(`[`, list(names(z[,15:115])), split(col(z[,15:115])[z[,15:115] <15000], row(z[,15:115])[z[,15:115] <15000]))
+  z2<-cbind(n[1],z)
+  sdist.mod<-rbind(sdist.mod,z2)
+}
 
+#coordinates(dist.modis) <- ~longitude+latitude
+#writeOGR(dist.modis,"Z:/GEODATABASE/VECTOR", 'hotspot', driver="ESRI Shapefile")
 
 #for (i in dim(sdist.mod)[1]){
 i=1
@@ -67,6 +84,7 @@ legend("bottomleft",pch=c(NA,21),lty=c(1,NA),lwd=c(2,NA),col=c("green","red"),
        legend=c("Límite ASP","Hot spot"))
 
 ### ENVIAR CORRE0
+
 
 
 
