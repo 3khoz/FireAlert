@@ -5,6 +5,7 @@ library(sp)
 library(geosphere)
 library(rgeos)
 library(OpenStreetMap)
+library(rjson)
 
 
 download.file("https://firms.modaps.eosdis.nasa.gov/active_fire/viirs/text/VNP14IMGTDL_NRT_South_America_24h.csv" 
@@ -19,6 +20,15 @@ projection(modis) <- CRS("+proj=longlat +datum=WGS84")
 coordinates(viirs) <- ~longitude+latitude
 projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
 
+
+temp0 <- tempfile()
+download.file("https://www.dropbox.com/s/pi6kubj9603wi9d/chile_wgs84.geojson?dl=0",temp0)
+myShape<-fromJSON(paste(readLines(temp0), collapse=""))
+unlink(temp)
+
+
+
+              
 setwd("Z:/GEODATABASE/VECTOR/Chile_utm19/chile_utm19/chile_continental_utm19/")
 myShape <- readOGR("chile_wgs84.shp")
 projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
