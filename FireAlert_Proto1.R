@@ -5,8 +5,8 @@ library(sp)
 library(geosphere)
 library(rgeos)
 library(OpenStreetMap)
-library(rjson)
-
+library(geojsonio)
+library(RCurl)
 
 download.file("https://firms.modaps.eosdis.nasa.gov/active_fire/viirs/text/VNP14IMGTDL_NRT_South_America_24h.csv" 
 ,"modis", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
@@ -21,10 +21,11 @@ coordinates(viirs) <- ~longitude+latitude
 projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
 
 
-temp0 <- tempfile()
-download.file("https://www.dropbox.com/s/pi6kubj9603wi9d/chile_wgs84.geojson?dl=0",temp0)
-myShape<-fromJSON(paste(readLines(temp0), collapse=""))
-unlink(temp)
+temp0 <- tempdir()
+setwd(temp0)
+json_file = download.file("https://github.com/3khoz/FireAlert/blob/master/data/chile_wgs84.geojson","chile_wgs84.geojson")
+file <- geojson_read("chile_wgs84.geojson", package = "geojsonio")
+
 
 
 
