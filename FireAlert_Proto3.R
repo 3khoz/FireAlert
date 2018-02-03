@@ -32,7 +32,7 @@ projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
 
 ## Filtrar por limites nacionales
 
-setwd("z:/GEODATABASE/VECTOR/utilidades/")
+setwd("c:/Users/Kathy/Dropbox/TEMPORALEs/info_asp/utilidades/")
 myShape <- readOGR("Chile_continental.shp")
 projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
 
@@ -43,7 +43,7 @@ st_vii_utm<-spTransform(st_vii, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
 ## Cargar datos SIDCO
 
-setwd("z:/GEODATABASE/VECTOR/")
+setwd("c:/Users/Kathy/Dropbox/TEMPORALEs/info_asp/")
 mySIDCOc <- readOGR("combate.shp")
 projection(mySIDCOc)<- CRS("+proj=longlat +datum=WGS84")
 mySIDCOo <- readOGR("observacion.shp")
@@ -54,14 +54,14 @@ rm(mySIDCOc,mySIDCOo)
 
 ## Cargar coberturas de prioridad
 
-setwd("z:/GEODATABASE/VECTOR/utilidades/")
+setwd("c:/Users/Kathy/Dropbox/TEMPORALEs/info_asp/utilidades/")
 myASP <- readOGR("SNASPE.shp")
 projection(myASP)<- CRS("+proj=longlat +datum=WGS84")
 myASP_utm<-spTransform(myASP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
-myBNP <- readOGR("BNP.shp")
-projection(myBNP)<- CRS("+proj=longlat +datum=WGS84")
-myBNP_utm<-spTransform(myBNP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+# myBNP <- readOGR("BNP.shp")
+# projection(myBNP)<- CRS("+proj=longlat +datum=WGS84")
+# myBNP_utm<-spTransform(myBNP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
 
 ## Calcular distancia a...
@@ -75,7 +75,7 @@ dist.modis <- cbind(st_mod@coords, dist.modis)
 dist.modis <- cbind(ID=row.names(dist.modis), dist.modis)
 name_asp<-as.data.frame(myASP)
 name_asp<-unique(name_asp$UNIDAD)
-rm(dist.mod)
+
 
 sMODIS<-NULL
 for (i in 14:115){
@@ -89,7 +89,6 @@ colnames(dist.vii)<-nASP[,1]
 dist.viis <- cbind(st_vii_utm@data, dist.vii)
 dist.viis <- cbind(st_vii@coords, dist.viis)
 dist.viis <- cbind(ID=row.names(dist.viis), dist.viis)
-rm(dist.vii) 
 
 sVIIRS<-NULL
 for (i in 14:115){
@@ -103,15 +102,13 @@ colnames(dist.SIDCO)<-nASP[,1]
 dist.SIDCOs <- cbind(mySIDCO_utm@data, dist.SIDCO)
 dist.SIDCOs <- cbind(mySIDCO@coords[,1:2], dist.SIDCOs)
 dist.SIDCOs<- cbind(ID=row.names(dist.SIDCOs), dist.SIDCOs)
-rm(d1,dist.SIDCO,modis,myShape,myASP)
+
 
 sSIDCOs<-NULL
 for (i in 14:114){
   d1<-subset(dist.SIDCOs,dist.SIDCOs[,i]<5000)
   sSIDCOs<-rbind(sSIDCOs,d1)
 }
-
-names(sSIDCOs)<-c("ID","longitude","latitude")
 
 
 leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
@@ -130,3 +127,4 @@ leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
     overlayGroups = c("SIDCO","HotSpot MODIS","HotSpot Viirs", "ASP"),
     options = layersControlOptions(collapsed = FALSE)
   )
+
