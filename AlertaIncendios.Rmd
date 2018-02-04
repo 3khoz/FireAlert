@@ -1,3 +1,4 @@
+
 <script>
    $(document).ready(function() {
      $head = $('#header');
@@ -8,21 +9,28 @@
 ---
 Format: ![Alt Text](url)
 title: Sitios de conservación en potencial riesgo ante los incendios forestales actuales
-author: "UNIDAD DE MONITOREO y PREDICCIÓN (COE GASP)"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: "UNIDAD DE MONITOREO y PREDICCIÓN (COE GASP)"  
 output: html_document
----
+--- 
 
+***
+hr{ 
+   height:5px; 
+   background-color:#ff0000; 
+   border:none; 
+ } 
+
+##### Fecha: `r format(Sys.time(), '%d %B, %Y')`  
+##### Hora: `r format(Sys.time(), '%H:%M')`
+##### Reporte N°1
+***
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
   
-##
-\newpage
-\newpage
-### La unidad ASPsel$UNIDAD presenta X eventos a menos de 5km a la redonda...
 
-```{r cars, message = FALSE, warning = FALSE}
+
+```{r cars, results='hide',message = FALSE, warning = FALSE}
 
 library(raster)
 library(rgdal)
@@ -117,26 +125,57 @@ for (i in 14:115){
 }
 
 ## SIDCO
-dist.SIDCO<-as.data.frame(gDistance(myASP_utm, mySIDCO_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+dist.SIDCO<-as.data.frame(gDistance(myASP_utm, mySIDCO_utm, byid=TRUE)) # filas son SNASPE y columnas hotspot
 colnames(dist.SIDCO)<-nASP[,1]
-dist.SIDCOs <- cbind(mySIDCO_utm@data, dist.SIDCO)
-dist.SIDCOs <- cbind(mySIDCO@coords[,1:2], dist.SIDCOs)
+dist.SIDCOs <- cbind(mySIDCO_utm@data[2:3], dist.SIDCO)
+cord<-mySIDCO@coords[,1:2]
+colnames(cord)<-c("longitude","latitude")
+dist.SIDCOs <- cbind(cord, dist.SIDCOs)
 dist.SIDCOs<- cbind(ID=row.names(dist.SIDCOs), dist.SIDCOs)
 
+#write.table(dist.SIDCOs,"dist.csv",sep=";",dec=",",row.names = F)
 
 sSIDCOs<-NULL
-for (i in 14:114){
+for (i in 6:106){
   d1<-subset(dist.SIDCOs,dist.SIDCOs[,i]<5000)
   sSIDCOs<-rbind(sSIDCOs,d1)
 }
 
 
+
+focos<-dim(sSIDCOs)[1]
+
+```
+
+#  
+#  
+
+#### El día de hoy se han detectado `r format(focos)` focos de incendios que se encuentra a menos de 5 km de `r format(focos)` sitios de conservación distribuidos en `r format(focos)` regiones
+
+***
+#### Resumen de los sitios que actualmente presentan afectación potencial:  
+  
+  
+  
+  
+| Foco | Protección | Nombre |Región | Distancia al foco (km) | Aspectos relevantes|
+|:---------------|:-------------:|---------------:|
+| `r format(focos)`| está alineada | a la derecha |
+| La columna dos | está | centrada |
+| La columna uno | está alienada | a la izquierda |
+
+
+***
+
+## Mapa de distribución de focos registrados
+```{r pressure, echo=FALSE}
+
 leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
-  #addCircles(data = sSIDCOs[,2:3],radius = 100 ,fill = T, stroke = TRUE, color = "#FF0000", 
-            # popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "SIDCO") %>%
-  addCircles(data = sMODIS[,2:3],radius = 100 ,fill = T, stroke = TRUE, color = "#F70B81", 
+  addCircles(data = sSIDCOs[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#FF0000", 
+             popup = paste0("Name: ", as.character(sSIDCOs$Name)), group = "SIDCO") %>%
+  addCircles(data = sMODIS[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#F70B81", 
              popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot MODIS") %>% 
-  addCircles(data = sVIIRS[,2:3],radius = 100, fill = T, stroke = TRUE, color = "#FF8000", 
+  addCircles(data = sVIIRS[,2:3],radius = 5000, fill = T, stroke = TRUE, color = "#FF8000", 
              popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot Viirs") %>%
   addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
               popup = paste0("Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
@@ -146,18 +185,8 @@ leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
   addLayersControl(
     overlayGroups = c("SIDCO","HotSpot MODIS","HotSpot Viirs", "ASP"),
     options = layersControlOptions(collapsed = FALSE)
-  )
-
+)
 
 
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

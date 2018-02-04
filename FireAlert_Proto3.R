@@ -97,26 +97,29 @@ for (i in 14:115){
 }
 
 ## SIDCO
-dist.SIDCO<-as.data.frame(gDistance(myASP_utm, mySIDCO_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+dist.SIDCO<-as.data.frame(gDistance(myASP_utm, mySIDCO_utm, byid=TRUE)) # filas son SNASPE y columnas hotspot
 colnames(dist.SIDCO)<-nASP[,1]
-dist.SIDCOs <- cbind(mySIDCO_utm@data, dist.SIDCO)
-dist.SIDCOs <- cbind(mySIDCO@coords[,1:2], dist.SIDCOs)
+dist.SIDCOs <- cbind(mySIDCO_utm@data[2:3], dist.SIDCO)
+cord<-mySIDCO@coords[,1:2]
+colnames(cord)<-c("longitude","latitude")
+dist.SIDCOs <- cbind(cord, dist.SIDCOs)
 dist.SIDCOs<- cbind(ID=row.names(dist.SIDCOs), dist.SIDCOs)
 
+write.table(dist.SIDCOs,"dist.csv",sep=";",dec=",",row.names = F)
 
 sSIDCOs<-NULL
-for (i in 14:114){
+for (i in 6:106){
   d1<-subset(dist.SIDCOs,dist.SIDCOs[,i]<5000)
   sSIDCOs<-rbind(sSIDCOs,d1)
 }
 
 
 leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
-  addCircles(data = sSIDCOs[,2:3],radius = 100 ,fill = T, stroke = TRUE, color = "#FF0000", 
-             popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "SIDCO") %>%
-  addCircles(data = sMODIS[,2:3],radius = 100 ,fill = T, stroke = TRUE, color = "#F70B81", 
+  addCircles(data = sSIDCOs[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#FF0000", 
+             popup = paste0("Name: ", as.character(sSIDCOs$Name)), group = "SIDCO") %>%
+  addCircles(data = sMODIS[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#F70B81", 
              popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot MODIS") %>% 
-  addCircles(data = sVIIRS[,2:3],radius = 100, fill = T, stroke = TRUE, color = "#FF8000", 
+  addCircles(data = sVIIRS[,2:3],radius = 5000, fill = T, stroke = TRUE, color = "#FF8000", 
              popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot Viirs") %>%
   addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
               popup = paste0("Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
