@@ -52,6 +52,9 @@ mySIDCO<-rbind(mySIDCOc,mySIDCOo)
 mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 rm(mySIDCOc,mySIDCOo)
 
+sb<-gBuffer(mySIDCO_utm,width = 50000)
+
+
 ## Cargar coberturas de prioridad
 
 setwd("c:/Users/Kathy/Dropbox/TEMPORALEs/info_asp/utilidades/")
@@ -112,6 +115,24 @@ for (i in 6:106){
   d1<-subset(dist.SIDCOs,dist.SIDCOs[,i]<5000)
   sSIDCOs<-rbind(sSIDCOs,d1)
 }
+
+library(sp)
+coordinates(sSIDCOs)<-~longitude+latitude
+
+sb<-gBuffer(sSIDCOs,width = 5000)
+
+require(sf)
+my.sf.point <- st_as_sf(x = sSIDCOs, 
+                        coords = c("longitude", "latitude"),
+                        crs = "+proj=longlat +datum=WGS84")
+# simple plot
+plot(my.sf.point)
+# interactive map:
+require(mapview)
+mapview(my.sf.point)
+
+# convert to sp object if needed
+my.sp.point <- as(my.sf.point, "Spatial")
 
 
 leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%

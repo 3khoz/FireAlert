@@ -13,16 +13,11 @@ author: "UNIDAD DE MONITOREO y PREDICCIÓN (COE GASP)"
 output: html_document
 --- 
 
-***
-hr{ 
-   height:5px; 
-   background-color:#ff0000; 
-   border:none; 
- } 
+![](barra.jpg) 
 
-##### Fecha: `r format(Sys.time(), '%d %B, %Y')`  
-##### Hora: `r format(Sys.time(), '%H:%M')`
-##### Reporte N°1
+##### **Fecha: ** `r format(Sys.time(), '%d %B, %Y')`  
+##### **Hora: ** `r format(Sys.time(), '%H:%M')`
+##### **Reporte N°: **1
 ***
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -150,7 +145,7 @@ focos<-dim(sSIDCOs)[1]
 #  
 #  
 
-#### El día de hoy se han detectado `r format(focos)` focos de incendios que se encuentra a menos de 5 km de `r format(focos)` sitios de conservación distribuidos en `r format(focos)` regiones
+#### El día de hoy se han detectado **`r format(focos)`** focos de incendios que se encuentra a menos de 5 km de **`r format(focos)`** sitios de conservación distribuidos en **`r format(focos)`** regiones
 
 ***
 #### Resumen de los sitios que actualmente presentan afectación potencial:  
@@ -173,7 +168,7 @@ focos<-dim(sSIDCOs)[1]
 leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
   addCircles(data = sSIDCOs[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#FF0000", 
              popup = paste0("Name: ", as.character(sSIDCOs$Name)), group = "SIDCO") %>%
-  addCircles(data = sMODIS[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#F70B81", 
+  addCircles(data = sMODIS[,2:3],radius = 5000 ,fill = F, stroke = TRUE, color = "#F70B81", 
              popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot MODIS") %>% 
   addCircles(data = sVIIRS[,2:3],radius = 5000, fill = T, stroke = TRUE, color = "#FF8000", 
              popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot Viirs") %>%
