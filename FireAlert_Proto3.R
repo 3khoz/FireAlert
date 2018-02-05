@@ -14,6 +14,10 @@ library(rJava)
 library(OpenStreetMap)
 library(rjson)
 library(leaflet)
+library(XML)
+
+## Funcion kml
+
 
 ## Descargar HotSpot 
 
@@ -31,9 +35,8 @@ coordinates(viirs) <- ~longitude+latitude
 projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
 
 ## Filtrar por limites nacionales
-
-setwd("c:/Users/Kathy/Dropbox/TEMPORALEs/info_asp/utilidades/")
-myShape <- readOGR("Chile_continental.shp")
+setwd("C:/Users/Gasp/Documents/GitHub/FireAlert/")
+myShape <- readOGR("data/Chile_continental.shp")
 projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
 
 st_mod <- modis[myShape, ]
@@ -43,29 +46,15 @@ st_vii_utm<-spTransform(st_vii, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
 ## Cargar datos SIDCO
 
-setwd("c:/Users/Kathy/Dropbox/TEMPORALEs/info_asp/")
-mySIDCOc <- readOGR("combate.shp")
-projection(mySIDCOc)<- CRS("+proj=longlat +datum=WGS84")
-mySIDCOo <- readOGR("observacion.shp")
-projection(mySIDCOo)<- CRS("+proj=longlat +datum=WGS84")
-mySIDCO<-rbind(mySIDCOc,mySIDCOo)
+mySIDCO <- readOGR("data/sidco.shp")
+projection(mySIDCO)<- CRS("+proj=longlat +datum=WGS84")
 mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
-rm(mySIDCOc,mySIDCOo)
-
-sb<-gBuffer(mySIDCO_utm,width = 50000)
-
 
 ## Cargar coberturas de prioridad
 
-setwd("c:/Users/Kathy/Dropbox/TEMPORALEs/info_asp/utilidades/")
-myASP <- readOGR("SNASPE.shp")
+myASP <- readOGR("data/Proteccion.shp")
 projection(myASP)<- CRS("+proj=longlat +datum=WGS84")
 myASP_utm<-spTransform(myASP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
-
-# myBNP <- readOGR("BNP.shp")
-# projection(myBNP)<- CRS("+proj=longlat +datum=WGS84")
-# myBNP_utm<-spTransform(myBNP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
-
 
 ## Calcular distancia a...
 
@@ -99,40 +88,93 @@ for (i in 14:115){
   sVIIRS<-rbind(sVIIRS,d1)
 }
 
+## join de ubicacion
+
+myRCP <- readOGR("data/union_rpc.shp")
+projection(myRCP)<- CRS("+proj=longlat +datum=WGS84")
+
+rcp<-over(mySIDCO, myRCP)
+
 ## SIDCO
 dist.SIDCO<-as.data.frame(gDistance(myASP_utm, mySIDCO_utm, byid=TRUE)) # filas son SNASPE y columnas hotspot
 colnames(dist.SIDCO)<-nASP[,1]
 dist.SIDCOs <- cbind(mySIDCO_utm@data[2:3], dist.SIDCO)
+dist.SIDCOs <- cbind(rcp[2:4],dist.SIDCOs)
 cord<-mySIDCO@coords[,1:2]
 colnames(cord)<-c("longitude","latitude")
 dist.SIDCOs <- cbind(cord, dist.SIDCOs)
 dist.SIDCOs<- cbind(ID=row.names(dist.SIDCOs), dist.SIDCOs)
 
-write.table(dist.SIDCOs,"dist.csv",sep=";",dec=",",row.names = F)
+#write.table(dist.SIDCOs,"dist.csv",sep=";",dec=",",row.names = F)
 
 sSIDCOs<-NULL
-for (i in 6:106){
+m1<-dim(dist.SIDCOs)[2]
+
+for (i in 9:m1){
   d1<-subset(dist.SIDCOs,dist.SIDCOs[,i]<5000)
   sSIDCOs<-rbind(sSIDCOs,d1)
 }
 
+
+resumen<-NULL
+
+for (i in 1:dim(sSIDCOs)[1]){
+  ## para nombre de sitio
+  n1<-names(sSIDCOs[i,9:509])[which.min(apply(sSIDCOs[i,9:509],MARGIN=2,min))]
+  ## para tipo de sitio
+  nASP2<-myASP@data[2:3]
+  n2<-subset(nASP2,nASP2$NAME==n1)
+  n2<-as.character(n2$TIPO)
+  ## para distancia
+  n3<-(sSIDCOs[i,9:509])[which.min(apply(sSIDCOs[i,9:509],MARGIN=2,min))]
+  n3<-as.numeric(n3[1])/1000
+  nf<-cbind(n1,n2,n3)
+  resumen<-rbind(resumen,nf)
+}
+
+colnames(resumen)<-c("Nombre","Tipo","DistFoco")
+
+
+sidcors<-sSIDCOs[,2:3]
+
 library(sp)
 coordinates(sSIDCOs)<-~longitude+latitude
+projection(sSIDCOs)<- CRS("+proj=longlat +datum=WGS84")
 
-sb<-gBuffer(sSIDCOs,width = 5000)
+b1<-buffer(sSIDCOs,5000,dissolve=F)
+projection(b1)<- CRS("+proj=longlat +datum=WGS84")
 
-require(sf)
-my.sf.point <- st_as_sf(x = sSIDCOs, 
-                        coords = c("longitude", "latitude"),
-                        crs = "+proj=longlat +datum=WGS84")
-# simple plot
-plot(my.sf.point)
-# interactive map:
-require(mapview)
-mapview(my.sf.point)
+# plot
 
-# convert to sp object if needed
-my.sp.point <- as(my.sf.point, "Spatial")
+for (i in 1){
+  i=1
+  leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
+    addCircles(data = sSIDCOs[i,],radius = 5000 ,fill = T, fillOpacity = .05,stroke = TRUE, color = "#FF0000", 
+               popup = paste0("Name: ", as.character(sSIDCOs$Name[i])), group = "SIDCO") %>%
+    setView(lng = mean(sidcors$longitude[i]), lat = mean(sidcors$latitude[i]), zoom = 11) %>%
+    addCircles(data = sSIDCOs[i,],radius = 5,fill = T,stroke = TRUE, color = "#FF0000") %>%
+    addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
+                popup = paste0("Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
+    addLegend("bottomright", colors = c("#FF0000", "#36FF33"), labels = c("SIDCO 5 km", "ASP")) %>%   
+    addLayersControl(overlayGroups = c("SIDCO","ASP"),options = layersControlOptions(collapsed = FALSE))
+}
+  
+  
+
+
+leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
+addCircles(data = sSIDCOs[2,],radius = 5000 ,fill = T, fillOpacity = .05,stroke = TRUE, color = "#FF0000", 
+             popup = paste0("Name: ", as.character(sSIDCOs$Name)), group = "SIDCO") %>%
+              setView(lng = mean(sidcors$longitude[2]), lat = mean(sidcors$latitude[2]), zoom = 11) %>%
+addCircles(data = sSIDCOs[2,],radius = 5,fill = T,stroke = TRUE, color = "#FF0000") %>%
+addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
+              popup = paste0("Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
+addLegend("bottomright", colors = c("#FF0000", "#36FF33"), labels = c("SIDCO 5 km", "ASP")) %>%   
+addLayersControl(overlayGroups = c("SIDCO","ASP"),options = layersControlOptions(collapsed = FALSE))
+
+
+
+
 
 
 leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
