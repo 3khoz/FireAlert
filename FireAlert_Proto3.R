@@ -141,15 +141,7 @@ for (i in 1:dim(unicos)[1]){
 
 name1<-gsub('.*/(.*)','\\1',resumen$FolderPath)
 
-compi<-cbind(resumen[1],resumen[3:7],Estado=name1,resumen[9:11])
-
-
-
-
-
-
-
-
+compi<-cbind(resumen[1],resumen[5:7],Estado=name1,resumen[9:11])
 
 
 sidcors<-datafin[,2:3]
@@ -193,3 +185,26 @@ projection(b1)<- CRS("+proj=longlat +datum=WGS84")
 #     options = layersControlOptions(collapsed = FALSE)
 #   )
 
+  iconv.data.frame<-function (df, ...)
+  {
+    df.names <- iconv(names(df), ...)
+    df.rownames <- iconv(rownames(df), ...)
+    names(df) <- df.names
+    rownames(df) <- df.rownames
+    df.list <- lapply(df, function(x) {
+      if (class(x) == "factor") {
+        x <- factor(iconv(as.character(x), ...))
+      }
+      else if (class(x) == "character") {
+        x <- iconv(x, ...)
+      }
+      else {
+        x
+      }
+    })
+    df.new <- do.call("data.frame", df.list)
+    return(df.new)
+  }
+  
+  iconv.data.frame(compi,from="UTF8",to="latin1")
+  
