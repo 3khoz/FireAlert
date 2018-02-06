@@ -8,6 +8,7 @@
 
 ---
 Format: ![Alt Text](url)
+
 title: Sitios de conservación en potencial riesgo ante los incendios forestales actuales
 author: "UNIDAD DE MONITOREO y PREDICCIÓN (COE GASP)"  
 output: html_document
@@ -69,21 +70,28 @@ projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
 
 ## Cargar datos SIDCO
 
-mySIDCO <- readOGR("Data/sidco.shp")
+mySIDCO <- readOGR("data/sidco_06022018t.shp", encoding = "UTF-8")
 projection(mySIDCO)<- CRS("+proj=longlat +datum=WGS84")
 mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
 ## Cargar coberturas de prioridad
 
-myASP <- readOGR("data/Proteccion.shp")
-projection(myASP)<- CRS("+proj=longlat +datum=WGS84")
-myASP_utm<-spTransform(myASP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+mySC <- readOGR("data/Proteccion.shp", encoding = "UTF-8")
+projection(mySC)<- CRS("+proj=longlat +datum=WGS84")
+mySC_utm<-spTransform(mySC, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+
+mySN<-subset(mySC,mySC@data$Tipoc=="SN")
+myBNP<-subset(mySC,mySC@data$Tipoc=="BNP")
+mySP<-subset(mySC,mySC@data$Tipoc=="SP")
+myICP<-subset(mySC,mySC@data$Tipoc=="ICP")
+myAAVC<-subset(mySC,mySC@data$Tipoc=="AAVC")
+myASP<-subset(mySC,mySC@data$Tipoc=="SNASPE")
 
 ## Calcular distancia a...
 
 # ## MODIS
 # dist.mod<-as.data.frame(gDistance(myASP_utm, st_mod_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
-nASP<-myASP_utm@data[3]
+nSC<-mySC_utm@data[3]
 # colnames(dist.mod)<-nASP[,1]
 # dist.modis <- cbind(st_mod_utm@data, dist.mod)
 # dist.modis <- cbind(st_mod@coords, dist.modis)
@@ -113,117 +121,150 @@ nASP<-myASP_utm@data[3]
 
 ## join de ubicacion
 
-myRCP <- readOGR("Data/union_rpc.shp")
+myRCP <- readOGR("data/union_rpc.shp", encoding = "UTF-8")
 projection(myRCP)<- CRS("+proj=longlat +datum=WGS84")
 
 rcp<-over(mySIDCO, myRCP)
 
 ## SIDCO
-dist.SIDCO<-as.data.frame(gDistance(myASP_utm, mySIDCO_utm, byid=TRUE)) # filas son SNASPE y columnas hotspot
-colnames(dist.SIDCO)<-nASP[,1]
-dist.SIDCOs <- cbind(mySIDCO_utm@data[2:3], dist.SIDCO)
-dist.SIDCOs <- cbind(rcp[2:4],dist.SIDCOs)
+dist.SIDCO<-as.data.frame(gDistance(mySC_utm, mySIDCO_utm, byid=TRUE)) # filas son SNASPE y columnas hotspot
+colnames(dist.SIDCO)<-nSC[,1]
+
+dist.SIDCOs <- cbind(mySIDCO_utm@data, dist.SIDCO)
+dist.SIDCOs <- cbind(rcp[2:5],dist.SIDCOs)
 cord<-mySIDCO@coords[,1:2]
 colnames(cord)<-c("longitude","latitude")
 dist.SIDCOs <- cbind(cord, dist.SIDCOs)
 dist.SIDCOs<- cbind(ID=row.names(dist.SIDCOs), dist.SIDCOs)
 
 sSIDCOs<-NULL
-for (i in 6:106){
+for (i in 10:510){
   d1<-subset(dist.SIDCOs,dist.SIDCOs[,i]<5000)
   sSIDCOs<-rbind(sSIDCOs,d1)
 }
 
+datafin<-as.data.frame(sSIDCOs)
+frecuen<-as.data.frame(summary(datafin$Name))
+fre<-cbind(Name=row.names(frecuen),Frecuencia=frecuen$`summary(datafin$Name)`)
+unicos<-unique(merge(datafin,fre,by="Name"))
+
 resumen<-NULL
 
-for (i in 1:dim(sSIDCOs)[1]){
-  ## para nombre de sitio
-  n1<-names(sSIDCOs[i,9:509])[which.min(apply(sSIDCOs[i,9:509],MARGIN=2,min))]
-  ## para tipo de sitio
-  nASP2<-myASP@data[2:3]
-  n2<-subset(nASP2,nASP2$NAME==n1)
-  n2<-as.character(n2$TIPO)
-  ## para distancia
-  n3<-(sSIDCOs[i,9:509])[which.min(apply(sSIDCOs[i,9:509],MARGIN=2,min))]
-  n3<-as.numeric(n3[1])/1000
-  nf<-cbind(n1,n2,n3)
-  resumen<-rbind(resumen,nf)
-}
+for (i in 1:dim(unicos)[1]){
+  
+  x<-unicos[i,]
+  f<-as.numeric(as.character(x$Frecuencia))
+  s<-sort(x[10:510])
+  nSC2<-mySC@data[2:5]
+  
+  for (h in 1:f) {
+    n1<-names(s[h])[which.min(apply(s[h],MARGIN=2,min))]
+    n2<-subset(nSC2,nSC2$NAME==n1)
+    n2<-as.character(n2$Tipoc)
+    n3<-(s[h])[which.min(apply(s[h],MARGIN=2,min))]
+    n3<-round(as.numeric(n3[1])/1000,2)
+    nf<-cbind(x[1:9],Sitio=n1,Tipo=n2,"Distancia Foco (Km)"=n3)
+    resumen<-rbind(resumen,nf)
+}}
 
-colnames(resumen)<-c("Nombre","Tipo","DistFoco")
-resumen<-as.data.frame(resumen)
+name1<-gsub('.*/(.*)','\\1',resumen$FolderPath)
 
-sidcors<-sSIDCOs[,2:3]
+compi<-cbind(Incendio=resumen[1],resumen[5:8],Estado=name1,resumen[10:12])
+compi<-compi[order(compi$Orden, compi$`Distancia Foco (Km)`),]
+compi<-compi[,-5]
+
+spa<-cbind(Incendio=resumen[1],resumen[3:4],resumen[5:8],Estado=name1,resumen[10:12])
+
 
 library(sp)
-coordinates(sSIDCOs)<-~longitude+latitude
-projection(sSIDCOs)<- CRS("+proj=longlat +datum=WGS84")
+coordinates(spa)<-~longitude+latitude
+projection(spa)<- CRS("+proj=longlat +datum=WGS84")
 
-focos<-dim(sSIDCOs)[1]
-datafin<-as.data.frame(sSIDCOs)
+## Esta formula recodifica el texto 
+  iconv.data.frame<-function (df, ...)
+  {
+    df.names <- iconv(names(df), ...)
+    df.rownames <- iconv(rownames(df), ...)
+    names(df) <- df.names
+    rownames(df) <- df.rownames
+    df.list <- lapply(df, function(x) {
+      if (class(x) == "factor") {
+        x <- factor(iconv(as.character(x), ...))
+      }
+      else if (class(x) == "character") {
+        x <- iconv(x, ...)
+      }
+      else {
+        x
+      }
+    })
+    df.new <- do.call("data.frame", df.list)
+    return(df.new)
+  }
+  
+  compi<-iconv.data.frame(compi,from="UTF8",to="latin1")
+
 
 ```
 
 #  
 #  
 
-#### El día de hoy se han detectado **`r format(length(unique(datafin$Name)))`** focos de incendios que se encuentra a menos de 5 km de **`r format(length(unique(datafin$Name)))`** sitios de conservación distribuidos en **`r format(length(unique(datafin$Region)))`** regiones
+#### El día de hoy se han detectado **`r format(length(unique(compi$Name)))`** focos de incendios que se encuentra a menos de 5 km de **`r format(length(unique(compi$Sitio)))`** sitios de conservación distribuidos en **`r format(length(unique(compi$Region)))`** regiones
 
 ***
 #### Resumen de los sitios que actualmente presentan afectación potencial:  
-  
-  
-| Foco | Sitio en riesgo | Tipo de protección | Región | Provincia | Comuna | Distancia al foco (km) | Aspectos relevantes|
-|:---------------|:-------------:|---------------:|:-------------:|---------------:|:-------------:|---------------:|:-------------:|
-| `r format(datafin$Name[1])`| `r format(resumen$Tipo[1])` | `r format(resumen$Nombre[1])` |`r format(datafin$Region[1])` |`r format(datafin$Provincia[1])` | `r format(datafin$Comuna[1])` | `r format(resumen$DistFoco[1])`|||
-| `r format(datafin$Name[2])` | proteccion | Nombre |`r format(datafin$Region[2])`|`r format(datafin$Provincia[2])` | `r format(datafin$Comuna[2])` | |||
-| `r format(datafin$Name[3])` | proteccion | Nombre |`r format(datafin$Region[3])`|`r format(datafin$Provincia[3])` | `r format(datafin$Comuna[3])` | |||
-| `r format(datafin$Name[4])` | proteccion | Nombre |`r format(datafin$Region[4])`|`r format(datafin$Provincia[4])` | `r format(datafin$Comuna[4])` | |||
-| `r format(datafin$Name[5])` | proteccion | Nombre |`r format(datafin$Region[5])`|`r format(datafin$Provincia[5])` | `r format(datafin$Comuna[5])` | |||
-| `r format(datafin$Name[6])` | proteccion | Nombre |`r format(datafin$Region[6])`|`r format(datafin$Provincia[6])` | `r format(datafin$Comuna[6])` | |||
-| `r format(datafin$Name[7])` | proteccion | Nombre |`r format(datafin$Region[7])`|`r format(datafin$Provincia[7])` | `r format(datafin$Comuna[7])` | |||
-| `r format(datafin$Name[8])` | proteccion | Nombre |`r format(datafin$Region[8])`|`r format(datafin$Provincia[8])` | `r format(datafin$Comuna[8])` | |||
-| `r format(datafin$Name[8])` | proteccion | Nombre |`r format(datafin$Region[9])`|`r format(datafin$Provincia[9])` | `r format(datafin$Comuna[9])` | |||
+
+```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
+library(knitr)
+coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Sitio","Tipo de protección","Distancia al foco (km)")
+kable(compi, row.names = NA,col.names = coln)
+
+```
 
 ***
+**SNASPE** = Sistema Nacional de Áreas Silvestres Protegidas del Estado, 
+**SN**     = Santuario de la Naturaleza, 
+**BNP**    = Bien Nacional Protegido, 
+**SP**     = Sitio Prioritario para la Conservación, 
+**ICP**    = Iniciatica de Conservación Privada, 
+**AAVC**   = Áreas de Alto Valor para la Conservación.
+   
+***
+Escribe aquí tus comentarios:  
 
-## Mapa de distribución de focos registrados  
-  
-  **Incendio `r format(datafin$Name[1])`**
+<textarea name="comentarios" rows="6" cols="130"></textarea>
 
+## Mapa de distribución de focos registrados a menos de 5 km de Sitios de Conservasión:  
+
+##  
 
 ```{r pressure, echo=FALSE}
 
-  i=1
-  leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
-    addCircles(data = sSIDCOs[i,],radius = 5000 ,fill = T, fillOpacity = .05,stroke = TRUE, color = "#FF0000", 
-               popup = paste0("Name: ", as.character(sSIDCOs$Name[i])), group = "SIDCO") %>%
-    setView(lng = mean(sidcors$longitude[i]), lat = mean(sidcors$latitude[i]), zoom = 11) %>%
-    addCircles(data = sSIDCOs[i,],radius = 5,fill = T,stroke = TRUE, color = "#FF0000") %>%
-    addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
-                popup = paste0(as.character(myASP@data[,2]),"Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
-    addLegend("bottomright", colors = c("#FF0000", "#36FF33"), labels = c("SIDCO 5 km", "ASP")) %>%   
-    addLayersControl(overlayGroups = c("SIDCO","ASP"),options = layersControlOptions(collapsed = FALSE))
+  leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImagery) %>%
+    addCircles(data = spa,radius = 5000 ,fill = T, fillOpacity = .05,stroke = TRUE, color = "#FF0000", 
+               popup = paste("Foco: ", as.character(spa$Name)), group = "SIDCO") %>%
+    #setView(lng1 = min(spa$longitude), lat1 = min(spa$latitude),lng2 = max(spa$longitude), lat2 = max(spa$latitude), zoom = 12) %>%
+    addCircles(data = spa,radius = 5,fill = T,stroke = TRUE, color = "#FF0000") %>%
+    addPolygons(data = myASP, fill = TRUE, color = "#12D502", 
+                popup = paste(as.character(myASP@data[,2])," : ", as.character(myASP@data[,3])), group = "SNASPE") %>% 
+    addPolygons(data = mySN, fill = TRUE, stroke = TRUE, color = "#0B6803", 
+                popup = paste(as.character(mySN@data[,2])," : ", as.character(mySN@data[,3])), group = "SN") %>% 
+    addPolygons(data = myBNP, fill = TRUE, stroke = TRUE, color = "#FCEE07", 
+                popup = paste(as.character(myBNP@data[,2])," : ", as.character(myBNP@data[,3])), group = "BNP") %>% 
+    addPolygons(data = mySP, fill = TRUE, stroke = TRUE, color = "#E2A904", 
+                popup = paste(as.character(mySP@data[,2])," : ", as.character(mySP@data[,3])), group = "SP") %>% 
+    addPolygons(data = myICP, fill = TRUE, stroke = TRUE, color = "#049BE2", 
+                popup = paste(as.character(myICP@data[,2])," : ", as.character(myICP@data[,3])), group = "ICP") %>% 
+    addPolygons(data = myAAVC, fill = TRUE, stroke = TRUE, color = "#E204D8", 
+                popup = paste(as.character(myAAVC@data[,2])," : ", as.character(myAAVC@data[,3])), group = "AAVC") %>% 
+  
+  
+    addLegend("bottomright", colors = c("#FF0000", "#12D502","#0B6803","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%   
+    addLayersControl(overlayGroups = c("SIDCO","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))
 ```
 
 ***
-  **Incendio `r format(datafin$Name[2])`**  
-    
-    
-  
-```{r,echo=FALSE}
-  i=2
-  leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
-    addCircles(data = sSIDCOs[i,],radius = 5000 ,fill = T, fillOpacity = .05,stroke = TRUE, color = "#FF0000", 
-               popup = paste0("Name: ", as.character(sSIDCOs$Name[i])), group = "SIDCO") %>%
-    setView(lng = mean(sidcors$longitude[i]), lat = mean(sidcors$latitude[i]), zoom = 11) %>%
-    addCircles(data = sSIDCOs[i,],radius = 5,fill = T,stroke = TRUE, color = "#FF0000") %>%
-    addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
-                popup = paste0(as.character(myASP@data[,2]),"Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
-    addLegend("bottomright", colors = c("#FF0000", "#36FF33"), labels = c("SIDCO 5 km", "ASP")) %>%   
-    addLayersControl(overlayGroups = c("SIDCO","ASP"),options = layersControlOptions(collapsed = FALSE))
-```
-  
 
   
   

@@ -19,34 +19,34 @@ library(XML)
 ## Funcion kml
 
 
-## Descargar HotSpot 
-
-download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/viirs/csv/VNP14IMGTDL_NRT_South_America_24h.csv" 
-              ,"modis", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
-
-download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_South_America_24h.csv" 
-              ,"viirs", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
-
-modis<-read.csv("modis",sep=",",dec=".",header=T)
-viirs<-read.csv("viirs",sep=",",dec=".",header=T)
-coordinates(modis) <- ~longitude+latitude
-projection(modis) <- CRS("+proj=longlat +datum=WGS84")
-coordinates(viirs) <- ~longitude+latitude
-projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
-
-## Filtrar por limites nacionales
-setwd("C:/Users/Gasp/Documents/GitHub/FireAlert/")
-myShape <- readOGR("data/Chile_continental.shp")
-projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
-
-st_mod <- modis[myShape, ]
-st_mod_utm<-spTransform(st_mod, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
-st_vii <- viirs[myShape, ]
-st_vii_utm<-spTransform(st_vii, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+# ## Descargar HotSpot 
+# 
+# download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/viirs/csv/VNP14IMGTDL_NRT_South_America_24h.csv" 
+#               ,"modis", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+# 
+# download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_South_America_24h.csv" 
+#               ,"viirs", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+# 
+# modis<-read.csv("modis",sep=",",dec=".",header=T)
+# viirs<-read.csv("viirs",sep=",",dec=".",header=T)
+# coordinates(modis) <- ~longitude+latitude
+# projection(modis) <- CRS("+proj=longlat +datum=WGS84")
+# coordinates(viirs) <- ~longitude+latitude
+# projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
+# 
+# ## Filtrar por limites nacionales
+# setwd("C:/Users/Gasp/Documents/GitHub/FireAlert/")
+# myShape <- readOGR("data/Chile_continental.shp")
+# projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
+# 
+# st_mod <- modis[myShape, ]
+# st_mod_utm<-spTransform(st_mod, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+# st_vii <- viirs[myShape, ]
+# st_vii_utm<-spTransform(st_vii, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
 ## Cargar datos SIDCO
 
-mySIDCO <- readOGR("data/sidco.shp")
+mySIDCO <- readOGR("data/sidco_06022018.shp")
 projection(mySIDCO)<- CRS("+proj=longlat +datum=WGS84")
 mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
@@ -58,35 +58,35 @@ myASP_utm<-spTransform(myASP, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
 ## Calcular distancia a...
 
-## MODIS
-dist.mod<-as.data.frame(gDistance(myASP_utm, st_mod_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+# ## MODIS
+# dist.mod<-as.data.frame(gDistance(myASP_utm, st_mod_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
 nASP<-myASP_utm@data[3]
-colnames(dist.mod)<-nASP[,1]
-dist.modis <- cbind(st_mod_utm@data, dist.mod)
-dist.modis <- cbind(st_mod@coords, dist.modis)
-dist.modis <- cbind(ID=row.names(dist.modis), dist.modis)
-name_asp<-as.data.frame(myASP)
-name_asp<-unique(name_asp$UNIDAD)
-
-
-sMODIS<-NULL
-for (i in 14:115){
-  d1<-subset(dist.modis,dist.modis[,i]<5000)
-  sMODIS<-rbind(sMODIS,d1)
-}
-
-## Viirs
-dist.vii<-as.data.frame(gDistance(myASP_utm, st_vii_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
-colnames(dist.vii)<-nASP[,1]
-dist.viis <- cbind(st_vii_utm@data, dist.vii)
-dist.viis <- cbind(st_vii@coords, dist.viis)
-dist.viis <- cbind(ID=row.names(dist.viis), dist.viis)
-
-sVIIRS<-NULL
-for (i in 14:115){
-  d1<-subset(dist.viis,dist.viis[,i]<5000)
-  sVIIRS<-rbind(sVIIRS,d1)
-}
+# colnames(dist.mod)<-nASP[,1]
+# dist.modis <- cbind(st_mod_utm@data, dist.mod)
+# dist.modis <- cbind(st_mod@coords, dist.modis)
+# dist.modis <- cbind(ID=row.names(dist.modis), dist.modis)
+# name_asp<-as.data.frame(myASP)
+# name_asp<-unique(name_asp$UNIDAD)
+# 
+# 
+# sMODIS<-NULL
+# for (i in 14:115){
+#   d1<-subset(dist.modis,dist.modis[,i]<5000)
+#   sMODIS<-rbind(sMODIS,d1)
+# }
+# 
+# ## Viirs
+# dist.vii<-as.data.frame(gDistance(myASP_utm, st_vii_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+# colnames(dist.vii)<-nASP[,1]
+# dist.viis <- cbind(st_vii_utm@data, dist.vii)
+# dist.viis <- cbind(st_vii@coords, dist.viis)
+# dist.viis <- cbind(ID=row.names(dist.viis), dist.viis)
+# 
+# sVIIRS<-NULL
+# for (i in 14:115){
+#   d1<-subset(dist.viis,dist.viis[,i]<5000)
+#   sVIIRS<-rbind(sVIIRS,d1)
+# }
 
 ## join de ubicacion
 
@@ -98,7 +98,7 @@ rcp<-over(mySIDCO, myRCP)
 ## SIDCO
 dist.SIDCO<-as.data.frame(gDistance(myASP_utm, mySIDCO_utm, byid=TRUE)) # filas son SNASPE y columnas hotspot
 colnames(dist.SIDCO)<-nASP[,1]
-dist.SIDCOs <- cbind(mySIDCO_utm@data[2:3], dist.SIDCO)
+dist.SIDCOs <- cbind(mySIDCO_utm@data, dist.SIDCO)
 dist.SIDCOs <- cbind(rcp[2:4],dist.SIDCOs)
 cord<-mySIDCO@coords[,1:2]
 colnames(cord)<-c("longitude","latitude")
@@ -115,27 +115,44 @@ for (i in 9:m1){
   sSIDCOs<-rbind(sSIDCOs,d1)
 }
 
+datafin<-as.data.frame(sSIDCOs)
+frecuen<-as.data.frame(summary(datafin$Name))
+fre<-cbind(Name=row.names(frecuen),Frecuencia=frecuen$`summary(datafin$Name)`)
+unicos<-unique(merge(datafin,fre,by="Name"))
 
 resumen<-NULL
 
-for (i in 1:dim(sSIDCOs)[1]){
-  ## para nombre de sitio
-  n1<-names(sSIDCOs[i,9:509])[which.min(apply(sSIDCOs[i,9:509],MARGIN=2,min))]
-  ## para tipo de sitio
+for (i in 1:dim(unicos)[1]){
+  
+  x<-unicos[i,]
+  f<-as.numeric(as.character(x$Frecuencia))
+  s<-sort(x[9:509])
   nASP2<-myASP@data[2:3]
-  n2<-subset(nASP2,nASP2$NAME==n1)
-  n2<-as.character(n2$TIPO)
-  ## para distancia
-  n3<-(sSIDCOs[i,9:509])[which.min(apply(sSIDCOs[i,9:509],MARGIN=2,min))]
-  n3<-as.numeric(n3[1])/1000
-  nf<-cbind(n1,n2,n3)
-  resumen<-rbind(resumen,nf)
-}
+  
+  for (h in 1:f) {
+    n1<-names(s[h])[which.min(apply(s[h],MARGIN=2,min))]
+    n2<-subset(nASP2,nASP2$NAME==n1)
+    n2<-as.character(n2$TIPO)
+    n3<-(s[h])[which.min(apply(s[h],MARGIN=2,min))]
+    n3<-as.numeric(n3[1])/1000
+    nf<-cbind(x[1:8],Sitio=n1,Tipo=n2,DistFoco=n3)
+    resumen<-rbind(resumen,nf)
+}}
 
-colnames(resumen)<-c("Nombre","Tipo","DistFoco")
+name1<-gsub('.*/(.*)','\\1',resumen$FolderPath)
+
+compi<-cbind(resumen[1],resumen[3:7],Estado=name1,resumen[9:11])
 
 
-sidcors<-sSIDCOs[,2:3]
+
+
+
+
+
+
+
+
+sidcors<-datafin[,2:3]
 
 library(sp)
 coordinates(sSIDCOs)<-~longitude+latitude
@@ -146,7 +163,6 @@ projection(b1)<- CRS("+proj=longlat +datum=WGS84")
 
 # plot
 
-for (i in 1){
   i=1
   leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
     addCircles(data = sSIDCOs[i,],radius = 5000 ,fill = T, fillOpacity = .05,stroke = TRUE, color = "#FF0000", 
@@ -157,40 +173,23 @@ for (i in 1){
                 popup = paste0("Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
     addLegend("bottomright", colors = c("#FF0000", "#36FF33"), labels = c("SIDCO 5 km", "ASP")) %>%   
     addLayersControl(overlayGroups = c("SIDCO","ASP"),options = layersControlOptions(collapsed = FALSE))
-}
+
   
-  
-
-
-leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
-addCircles(data = sSIDCOs[2,],radius = 5000 ,fill = T, fillOpacity = .05,stroke = TRUE, color = "#FF0000", 
-             popup = paste0("Name: ", as.character(sSIDCOs$Name)), group = "SIDCO") %>%
-              setView(lng = mean(sidcors$longitude[2]), lat = mean(sidcors$latitude[2]), zoom = 11) %>%
-addCircles(data = sSIDCOs[2,],radius = 5,fill = T,stroke = TRUE, color = "#FF0000") %>%
-addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
-              popup = paste0("Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
-addLegend("bottomright", colors = c("#FF0000", "#36FF33"), labels = c("SIDCO 5 km", "ASP")) %>%   
-addLayersControl(overlayGroups = c("SIDCO","ASP"),options = layersControlOptions(collapsed = FALSE))
-
-
-
-
-
-
-leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
-  addCircles(data = sSIDCOs[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#FF0000", 
-             popup = paste0("Name: ", as.character(sSIDCOs$Name)), group = "SIDCO") %>%
-  addCircles(data = sMODIS[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#F70B81", 
-             popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot MODIS") %>% 
-  addCircles(data = sVIIRS[,2:3],radius = 5000, fill = T, stroke = TRUE, color = "#FF8000", 
-             popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot Viirs") %>%
-  addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
-              popup = paste0("Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
-  # add a legend
-  addLegend("bottomright", colors = c("#FF0000","#F70B81","#FF8000", "#36FF33"), labels = c("SIDCO","HotSpot MODIS","HotSpot Viirs", "ASP")) %>%   
-  # add layers control
-  addLayersControl(
-    overlayGroups = c("SIDCO","HotSpot MODIS","HotSpot Viirs", "ASP"),
-    options = layersControlOptions(collapsed = FALSE)
-  )
+# 
+# leaflet() %>% addProviderTiles(providers$Esri.WorldImagery) %>%
+#   addCircles(data = sSIDCOs[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#FF0000", 
+#              popup = paste0("Name: ", as.character(sSIDCOs$Name)), group = "SIDCO") %>%
+#   addCircles(data = sMODIS[,2:3],radius = 5000 ,fill = T, stroke = TRUE, color = "#F70B81", 
+#              popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot MODIS") %>% 
+#   addCircles(data = sVIIRS[,2:3],radius = 5000, fill = T, stroke = TRUE, color = "#FF8000", 
+#              popup = paste0("Fecha: ", as.character(dist.modis$acq_date)), group = "HotSpot Viirs") %>%
+#   addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#36FF33", 
+#               popup = paste0("Unidad: ", as.character(myASP@data[,3])), group = "ASP") %>% 
+#   # add a legend
+#   addLegend("bottomright", colors = c("#FF0000","#F70B81","#FF8000", "#36FF33"), labels = c("SIDCO","HotSpot MODIS","HotSpot Viirs", "ASP")) %>%   
+#   # add layers control
+#   addLayersControl(
+#     overlayGroups = c("SIDCO","HotSpot MODIS","HotSpot Viirs", "ASP"),
+#     options = layersControlOptions(collapsed = FALSE)
+#   )
 
