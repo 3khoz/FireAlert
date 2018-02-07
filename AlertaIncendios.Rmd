@@ -39,38 +39,39 @@ library(OpenStreetMap)
 library(rjson)
 library(leaflet)
 library(XML)
+library(plyr)
 
-## Funcion kml
+## Esta formula recodifica el texto 
+  iconv.data.frame<-function (df, ...)
+  {
+    df.names <- iconv(names(df), ...)
+    df.rownames <- iconv(rownames(df), ...)
+    names(df) <- df.names
+    rownames(df) <- df.rownames
+    df.list <- lapply(df, function(x) {
+      if (class(x) == "factor") {
+        x <- factor(iconv(as.character(x), ...))
+      }
+      else if (class(x) == "character") {
+        x <- iconv(x, ...)
+      }
+      else {
+        x
+      }
+    })
+    df.new <- do.call("data.frame", df.list)
+    return(df.new)
+  }
 
-
-## Descargar HotSpot 
-
-# download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/viirs/csv/VNP14IMGTDL_NRT_South_America_24h.csv" 
-#               ,"modis", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
-# 
-# download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_South_America_24h.csv" 
-#               ,"viirs", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
-# 
-# modis<-read.csv("modis",sep=",",dec=".",header=T)
-# viirs<-read.csv("viirs",sep=",",dec=".",header=T)
-# coordinates(modis) <- ~longitude+latitude
-# projection(modis) <- CRS("+proj=longlat +datum=WGS84")
-# coordinates(viirs) <- ~longitude+latitude
-# projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
 
 ## Filtrar por limites nacionales
 
 myShape <- readOGR("Data/Chile_continental.shp")
 projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
 
-# st_mod <- modis[myShape, ]
-# st_mod_utm<-spTransform(st_mod, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
-# st_vii <- viirs[myShape, ]
-# st_vii_utm<-spTransform(st_vii, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
-
 ## Cargar datos SIDCO
 
-mySIDCO <- readOGR("data/sidco_06022018t.shp", encoding = "UTF-8")
+mySIDCO <- readOGR("data/sidco_07022018m.shp", encoding = "UTF-8")
 projection(mySIDCO)<- CRS("+proj=longlat +datum=WGS84")
 mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
@@ -87,37 +88,8 @@ myICP<-subset(mySC,mySC@data$Tipoc=="ICP")
 myAAVC<-subset(mySC,mySC@data$Tipoc=="AAVC")
 myASP<-subset(mySC,mySC@data$Tipoc=="SNASPE")
 
-## Calcular distancia a...
 
-# ## MODIS
-# dist.mod<-as.data.frame(gDistance(myASP_utm, st_mod_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
 nSC<-mySC_utm@data[3]
-# colnames(dist.mod)<-nASP[,1]
-# dist.modis <- cbind(st_mod_utm@data, dist.mod)
-# dist.modis <- cbind(st_mod@coords, dist.modis)
-# dist.modis <- cbind(ID=row.names(dist.modis), dist.modis)
-# name_asp<-as.data.frame(myASP)
-# name_asp<-unique(name_asp$UNIDAD)
-# 
-# 
-# sMODIS<-NULL
-# for (i in 14:115){
-#   d1<-subset(dist.modis,dist.modis[,i]<5000)
-#   sMODIS<-rbind(sMODIS,d1)
-# }
-# 
-# ## Viirs
-# dist.vii<-as.data.frame(gDistance(myASP_utm, st_vii_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
-# colnames(dist.vii)<-nASP[,1]
-# dist.viis <- cbind(st_vii_utm@data, dist.vii)
-# dist.viis <- cbind(st_vii@coords, dist.viis)
-# dist.viis <- cbind(ID=row.names(dist.viis), dist.viis)
-# 
-# sVIIRS<-NULL
-# for (i in 14:115){
-#   d1<-subset(dist.viis,dist.viis[,i]<5000)
-#   sVIIRS<-rbind(sVIIRS,d1)
-# }
 
 ## join de ubicacion
 
@@ -179,30 +151,8 @@ spa<-cbind(Incendio=resumen[1],resumen[3:4],resumen[5:8],Estado=name1,resumen[10
 library(sp)
 coordinates(spa)<-~longitude+latitude
 projection(spa)<- CRS("+proj=longlat +datum=WGS84")
-
-## Esta formula recodifica el texto 
-  iconv.data.frame<-function (df, ...)
-  {
-    df.names <- iconv(names(df), ...)
-    df.rownames <- iconv(rownames(df), ...)
-    names(df) <- df.names
-    rownames(df) <- df.rownames
-    df.list <- lapply(df, function(x) {
-      if (class(x) == "factor") {
-        x <- factor(iconv(as.character(x), ...))
-      }
-      else if (class(x) == "character") {
-        x <- iconv(x, ...)
-      }
-      else {
-        x
-      }
-    })
-    df.new <- do.call("data.frame", df.list)
-    return(df.new)
-  }
   
-  compi<-iconv.data.frame(compi,from="UTF8",to="latin1")
+compi<-iconv.data.frame(compi,from="UTF8",to="latin1")
 
 
 ```
@@ -235,33 +185,59 @@ Escribe aquí tus comentarios:
 
 <textarea name="comentarios" rows="6" cols="130"></textarea>
 
-## Mapa de distribución de focos registrados a menos de 5 km de Sitios de Conservasión:  
+## Mapa de distribución de focos registrados a menos de 5 km de Sitios de Conservasión:
 
-##  
+<!-- as.character(spa$Name) -->
+<!-- iconv.data.frame(as.character(spa$Name),from="UTF8",to="latin1") -->
 
 ```{r pressure, echo=FALSE}
 
-  leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImagery) %>%
-    addCircles(data = spa,radius = 5000 ,fill = T, fillOpacity = .05,stroke = TRUE, color = "#FF0000", 
-               popup = paste("Foco: ", as.character(spa$Name)), group = "SIDCO") %>%
-    #setView(lng1 = min(spa$longitude), lat1 = min(spa$latitude),lng2 = max(spa$longitude), lat2 = max(spa$latitude), zoom = 12) %>%
-    addCircles(data = spa,radius = 5,fill = T,stroke = TRUE, color = "#FF0000") %>%
-    addPolygons(data = myASP, fill = TRUE, color = "#12D502", 
-                popup = paste(as.character(myASP@data[,2])," : ", as.character(myASP@data[,3])), group = "SNASPE") %>% 
-    addPolygons(data = mySN, fill = TRUE, stroke = TRUE, color = "#0B6803", 
-                popup = paste(as.character(mySN@data[,2])," : ", as.character(mySN@data[,3])), group = "SN") %>% 
-    addPolygons(data = myBNP, fill = TRUE, stroke = TRUE, color = "#FCEE07", 
-                popup = paste(as.character(myBNP@data[,2])," : ", as.character(myBNP@data[,3])), group = "BNP") %>% 
-    addPolygons(data = mySP, fill = TRUE, stroke = TRUE, color = "#E2A904", 
-                popup = paste(as.character(mySP@data[,2])," : ", as.character(mySP@data[,3])), group = "SP") %>% 
-    addPolygons(data = myICP, fill = TRUE, stroke = TRUE, color = "#049BE2", 
-                popup = paste(as.character(myICP@data[,2])," : ", as.character(myICP@data[,3])), group = "ICP") %>% 
-    addPolygons(data = myAAVC, fill = TRUE, stroke = TRUE, color = "#E204D8", 
-                popup = paste(as.character(myAAVC@data[,2])," : ", as.character(myAAVC@data[,3])), group = "AAVC") %>% 
-  
-  
+# Tipos
+
+tasp<-iconv.data.frame(as.data.frame(as.character(myASP@data[,2])),from="UTF8",to="latin1")
+tsn<-iconv.data.frame(as.data.frame(as.character(mySN@data[,2])),from="UTF8",to="latin1")
+tbnp<-iconv.data.frame(as.data.frame(as.character(myBNP@data[,2])),from="UTF8",to="latin1")
+tsp<-iconv.data.frame(as.data.frame(as.character(mySP@data[,2])),from="UTF8",to="latin1")
+ticp<-iconv.data.frame(as.data.frame(as.character(myICP@data[,2])),from="UTF8",to="latin1")
+taavc<-iconv.data.frame(as.data.frame(as.character(myAAVC@data[,2])),from="UTF8",to="latin1")
+
+# nombres 
+nasp<-iconv.data.frame(as.data.frame(as.character(myASP@data[,3])),from="UTF8",to="latin1")
+nsn<-iconv.data.frame(as.data.frame(as.character(mySN@data[,3])),from="UTF8",to="latin1")
+nbnp<-iconv.data.frame(as.data.frame(as.character(myBNP@data[,3])),from="UTF8",to="latin1")
+nsp<-iconv.data.frame(as.data.frame(as.character(mySP@data[,3])),from="UTF8",to="latin1")
+nicp<-iconv.data.frame(as.data.frame(as.character(myICP@data[,3])),from="UTF8",to="latin1")
+naavc<-iconv.data.frame(as.data.frame(as.character(myAAVC@data[,3])),from="UTF8",to="latin1")
+
+
+leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImagery) %>%
+     addCircles(data = spa,radius = 5000 ,fill = T, fillOpacity = .08,stroke = T, color = "#FF0000",
+                popup = paste("Foco: ", as.character(spa$Name) ), group = "SIDCO") %>%
+    # setView(lng = min(spa$longitude), lat = min(spa$latitude), zoom = 7) %>%
+     fitBounds(lng1=min(spa$longitude),lat1=min(spa$latitude),lng2=max(spa$longitude),lat2=max(spa$latitude))%>%
+    
+     addCircles(data = spa,radius = 5,fill = T,stroke = TRUE, color = "#FF0000",
+                popup = paste("Foco: ", as.character(spa$Name) )) %>%
+    
+     addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#12D502", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(tasp[,1])," : ", as.character(nasp[,1])), group = "SNASPE") %>%
+     addPolygons(data = mySN, fill = TRUE, stroke = TRUE, color = "#0B6803", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(tsn[,1])," : ", as.character(nsn[,1])), group = "SN") %>%
+     addPolygons(data = myBNP, fill = TRUE, stroke = TRUE, color = "#FCEE07", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(tbnp[,1])," : ", as.character(nbnp[,1])), group = "BNP") %>%
+     addPolygons(data = mySP, fill = TRUE, stroke = TRUE, color = "#E2A904", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(tsp[,1])," : ", as.character(nsp[,1])), group = "SP") %>%
+     addPolygons(data = myICP, fill = TRUE, stroke = TRUE, color = "#049BE2", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(ticp[,1])," : ", as.character(nicp[,1])), group = "ICP") %>%
+     addPolygons(data = myAAVC, fill = TRUE, stroke = TRUE, color = "#E204D8", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(taavc[,1])," : ", as.character(naavc[,1])), group = "AAVC") %>% 
+
     addLegend("bottomright", colors = c("#FF0000", "#12D502","#0B6803","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%   
-    addLayersControl(overlayGroups = c("SIDCO","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))
+    addLayersControl(overlayGroups = c("SIDCO","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))%>% 
+     hideGroup(c("SNASPE","SN","BNP","SP","ICP","AAVC"))
+
+
+
 ```
 
 ***
