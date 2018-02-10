@@ -71,7 +71,7 @@ projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
 
 ## Cargar datos SIDCO
 
-mySIDCO <- readOGR("data/sidco_07022018m.shp", encoding = "UTF-8")
+mySIDCO <- readOGR("data/sidco_08022018t.shp", encoding = "UTF-8")
 projection(mySIDCO)<- CRS("+proj=longlat +datum=WGS84")
 mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 

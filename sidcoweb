@@ -2,7 +2,7 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
   <Document>
     <name>SIDCO</name>
-    <description>Actualizado al 7-feb-2018 16:42</description>
+    <description>Actualizado al 9-feb-2018 16:44</description>
     <open>1</open>
     <Schema name="sidco" id="sidco_schema">
       <SimpleField type="string" name="ID">
@@ -1750,18 +1750,6 @@
         <open>1</open>
           <Folder>
             <name>Foco</name>
-              <Placemark>
-                <name>F193 - PUNAHUEL</name>
-                <styleUrl>#INCENDIO-10</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107248418</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-73.716667,-42.383333,0</coordinates>
-                </Point>
-              </Placemark>
           </Folder>
           <Folder>
             <name>En trayecto</name>
@@ -1792,9 +1780,57 @@
                   <coordinates>-71.271944,-36.851806,0</coordinates>
                 </Point>
               </Placemark>
+              <Placemark>
+                <name>583 - TUCAPEL</name>
+                <styleUrl>#INCENDIO-30</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107724745</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.947222,-37.316111,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>586 - SAN JUAN/// BOFR</name>
+                <styleUrl>#INCENDIO-30</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107849063</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.903056,-36.610556,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>588 - VEGUILLAS /BOFR</name>
+                <styleUrl>#INCENDIO-30</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107864557</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.902111,-36.595861,0</coordinates>
+                </Point>
+              </Placemark>
           </Folder>
           <Folder>
             <name>En Combate</name>
+              <Placemark>
+                <name>11 - SECTOR LA VERBENA</name>
+                <styleUrl>#INCENDIO-40</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108018026</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-70.676522,-28.656387,0</coordinates>
+                </Point>
+              </Placemark>
               <Placemark>
                 <name>18 - CHACRITAS II</name>
                 <styleUrl>#INCENDIO-40</styleUrl>
@@ -1828,7 +1864,55 @@
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.461946,-39.845769,0</coordinates>
+                  <coordinates>-72.464192,-39.845719,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>163 - CALLEJONES</name>
+                <styleUrl>#INCENDIO-40</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107965745</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.168389,-34.636778,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>304 - COLONIA MENDOZA</name>
+                <styleUrl>#INCENDIO-40</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107996975</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.018056,-38.701111,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>305 - COILACO</name>
+                <styleUrl>#INCENDIO-40</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107994281</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.875278,-38.539444,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>344 - LAS VERTIENTES</name>
+                <styleUrl>#INCENDIO-40</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108009003</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-70.761833,-33.311361,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -1844,44 +1928,56 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>591 - POBLACION 28 MARZO</name>
+                <name>590 - SANTA TERESA</name>
                 <styleUrl>#INCENDIO-40</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107224081</SimpleData>
+                    <SimpleData name="ID">incendio-107866417</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-71.222778,-32.819722,0</coordinates>
+                  <coordinates>-72.010833,-36.515556,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>593 - LA AGUADA V</name>
+                <styleUrl>#INCENDIO-40</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107962150</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.424722,-37.207222,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>598 - SANTA CLARA</name>
+                <styleUrl>#INCENDIO-40</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108002645</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.324722,-36.811944,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>602 - LOS MAITENES PARADERO 6</name>
+                <styleUrl>#INCENDIO-40</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108010821</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.235556,-32.994167,0</coordinates>
                 </Point>
               </Placemark>
           </Folder>
           <Folder>
             <name>Controlado</name>
-              <Placemark>
-                <name>F68 - CASABLANCA</name>
-                <styleUrl>#INCENDIO-50</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-104978283</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-73.085272,-39.951315,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
-                <name>22 - POM POM</name>
-                <styleUrl>#INCENDIO-50</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-106354213</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-72.825246,-39.521565,0</coordinates>
-                </Point>
-              </Placemark>
               <Placemark>
                 <name>78 - LA CAMPANA II</name>
                 <styleUrl>#INCENDIO-50</styleUrl>
@@ -1892,18 +1988,6 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-73.240917,-41.640639,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
-                <name>95 - LA NARANJA-EL ARRAYAN</name>
-                <styleUrl>#INCENDIO-50</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-105051727</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-73.259444,-41.0725,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -1919,18 +2003,6 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>105 - PUPETRA</name>
-                <styleUrl>#INCENDIO-50</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-106575910</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-73.624722,-42.331667,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
                 <name>252 - COLLICO</name>
                 <styleUrl>#INCENDIO-50</styleUrl>
                 <ExtendedData>
@@ -1943,39 +2015,39 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>286 - REDUCCIÓN RANQUILCO</name>
+                <name>299 - LEMONAO_TORO</name>
                 <styleUrl>#INCENDIO-50</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-106476353</SimpleData>
+                    <SimpleData name="ID">incendio-107622558</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.927222,-38.381944,0</coordinates>
+                  <coordinates>-72.313889,-38.368333,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>290 - LA ESPERANZA 3</name>
+                <name>300 - MAICA (4)</name>
                 <styleUrl>#INCENDIO-50</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-106780707</SimpleData>
+                    <SimpleData name="ID">incendio-107613314</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.379722,-37.857778,0</coordinates>
+                  <coordinates>-72.238333,-37.925278,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>362 - LAS TRINCHERAS</name>
+                <name>301 - LOS QUILANTOS</name>
                 <styleUrl>#INCENDIO-50</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107168470</SimpleData>
+                    <SimpleData name="ID">incendio-107708850</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.193333,-35.114722,0</coordinates>
+                  <coordinates>-72.503889,-37.920833,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -2051,15 +2123,111 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>564 - NACIMIENTO</name>
+                <name>567 - LA ARAUCANA</name>
                 <styleUrl>#INCENDIO-50</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107171647</SimpleData>
+                    <SimpleData name="ID">incendio-107262994</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.661111,-37.493611,0</coordinates>
+                  <coordinates>-73.393222,-37.650028,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>568 - SAN RAMÓN II</name>
+                <styleUrl>#INCENDIO-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107276803</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.404944,-38.118417,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>582 - TRES PINOS III// BO</name>
+                <styleUrl>#INCENDIO-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107710401</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.40525,-37.634472,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>585 - CERRO NEUQUE</name>
+                <styleUrl>#INCENDIO-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107741387</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.912028,-36.595194,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>587 - LA GLORIA</name>
+                <styleUrl>#INCENDIO-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107866989</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.872778,-36.608889,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>591 - SANTA CRUZ DE CUCA</name>
+                <styleUrl>#INCENDIO-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107921578</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.431944,-36.660278,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>594 - YOBILO IX</name>
+                <styleUrl>#INCENDIO-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107963867</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.142556,-37.001306,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>596 - RERE</name>
+                <styleUrl>#INCENDIO-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107975605</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.737222,-37.183333,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>597 - SANTA SOFIA</name>
+                <styleUrl>#INCENDIO-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107953803</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.444111,-37.297861,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -2074,199 +2242,187 @@
                   <coordinates>-73.033016,-39.605758,0</coordinates>
                 </Point>
               </Placemark>
-              <Placemark>
-                <name>F963 - CAMINO INTERNACIONAL, CRESAL</name>
-                <styleUrl>#INCENDIO-50</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107247385</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-71.516111,-32.981111,0</coordinates>
-                </Point>
-              </Placemark>
           </Folder>
           <Folder>
             <name>Extinguido</name>
               <Placemark>
-                <name>107 - PUNTRA</name>
+                <name>22 - POM POM</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107203022</SimpleData>
+                    <SimpleData name="ID">incendio-106354213</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-73.680278,-42.175556,0</coordinates>
+                  <coordinates>-72.825246,-39.521565,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>158 - CUESTA CORCOLEN</name>
+                <name>111 - LA LADERA PELLUCO</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107193327</SimpleData>
+                    <SimpleData name="ID">incendio-107942105</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-71.034083,-34.441028,0</coordinates>
+                  <coordinates>-72.916722,-41.476667,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>291 - COMUNIDAD TORI</name>
+                <name>286 - REDUCCIÓN RANQUILCO</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-106818205</SimpleData>
+                    <SimpleData name="ID">incendio-106476353</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.333889,-38.357778,0</coordinates>
+                  <coordinates>-72.927222,-38.381944,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>337 - LOS CULENES</name>
+                <name>302 - QUILAS BAJAS</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107214755</SimpleData>
+                    <SimpleData name="ID">incendio-107879473</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-71.338311,-33.900218,0</coordinates>
+                  <coordinates>-72.566389,-38.886944,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>357 - LO VALDIVIA 2</name>
+                <name>303 - VILLA ANDINA</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-106936287</SimpleData>
+                    <SimpleData name="ID">incendio-107922496</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-71.351889,-34.992167,0</coordinates>
+                  <coordinates>-72.624722,-38.714722,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>358 - PUEBLO HUNDIDO</name>
+                <name>342 - LOICA ALTO</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107116762</SimpleData>
+                    <SimpleData name="ID">incendio-107637860</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.543889,-35.794528,0</coordinates>
+                  <coordinates>-71.515278,-33.985556,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>359 - PARRONAL</name>
+                <name>378 - CERRO LA CRUZ</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107113191</SimpleData>
+                    <SimpleData name="ID">incendio-107914152</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-71.728611,-35.056611,0</coordinates>
+                  <coordinates>-71.695778,-35.56625,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>360 - SIERRA ALEGRE</name>
+                <name>379 - LAS AMERICAS</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107139083</SimpleData>
+                    <SimpleData name="ID">incendio-107920091</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.310167,-35.596083,0</coordinates>
+                  <coordinates>-71.642667,-35.398972,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>361 - SANTA ELENA</name>
+                <name>380 - BOBADILLA</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107173424</SimpleData>
+                    <SimpleData name="ID">incendio-107991225</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.312111,-35.589944,0</coordinates>
+                  <coordinates>-71.696167,-35.564,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>363 - DIFUNTA CORREA</name>
+                <name>381 - HUERTO LOS ROBLES</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107174427</SimpleData>
+                    <SimpleData name="ID">incendio-107990658</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.299833,-36.002306,0</coordinates>
+                  <coordinates>-71.597556,-35.874639,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>364 - LA ARBOLEDA</name>
+                <name>569 - SAN FABIAN II</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107219224</SimpleData>
+                    <SimpleData name="ID">incendio-107273558</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-71.179639,-34.850639,0</coordinates>
+                  <coordinates>-71.481944,-36.600278,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>365 - MAROMILLAS</name>
+                <name>578 - RUCARAQUI</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107229598</SimpleData>
+                    <SimpleData name="ID">incendio-107621242</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.319083,-35.244111,0</coordinates>
+                  <coordinates>-73.537139,-37.754139,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>561 - PRIMERA AGUA</name>
+                <name>581 - COSTANERA HUALPEN</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-106999145</SimpleData>
+                    <SimpleData name="ID">incendio-107693928</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.904167,-36.722778,0</coordinates>
+                  <coordinates>-73.09675,-36.804806,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>562 - CAMINO SAN BERNARDO VI</name>
+                <name>592 - CAMPO LINDO</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107119332</SimpleData>
+                    <SimpleData name="ID">incendio-107931889</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.068056,-36.61,0</coordinates>
+                  <coordinates>-73.143,-37.047472,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>563 - CRUCE MULCHEN NEGRETE</name>
+                <name>595 - PULEBU II</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107159624</SimpleData>
+                    <SimpleData name="ID">incendio-107966127</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.256389,-37.720556,0</coordinates>
+                  <coordinates>-73.311389,-37.811694,0</coordinates>
                 </Point>
               </Placemark>
           </Folder>
@@ -2322,18 +2478,6 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>232 - LOS RETAMOS</name>
-                <styleUrl>#INCENDIO-EMPRESA-40</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-100787624</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-72.5192,-38.0578,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
                 <name>234 - SANTA ADELA Y ELCIRA</name>
                 <styleUrl>#INCENDIO-EMPRESA-40</styleUrl>
                 <ExtendedData>
@@ -2355,42 +2499,6 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-72.943222264987,-39.53548059245,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
-                <name>244 - NUPANGUE P-15 (ARAUCO)</name>
-                <styleUrl>#INCENDIO-EMPRESA-40</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-101357155</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-72.55,-38.0561,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
-                <name>254 - PARCELA I SAN RAMON</name>
-                <styleUrl>#INCENDIO-EMPRESA-40</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-101607261</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-72.4331,-38.0175,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
-                <name>397 - LABRANZA</name>
-                <styleUrl>#INCENDIO-EMPRESA-40</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-99954274</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-73.4006,-38.2397,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -2481,7 +2589,7 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>21 - LA PEÑA</name>
+                <name>25 - LA PEÑA</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
@@ -3129,6 +3237,18 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>232 - LOS RETAMOS</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-100787624</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.5192,-38.0578,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>235 - EL NARANJO LOTE-A</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -3201,6 +3321,18 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>244 - NUPANGUE P-15 (ARAUCO)</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-101357155</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.55,-38.0561,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>245 - EL ROSAL PART.</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -3270,6 +3402,18 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-71.7089,-35.2714,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>254 - PARCELA I SAN RAMON</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-101607261</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.4331,-38.0175,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -3861,6 +4005,30 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>323 - LA GRANJA</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107536045</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.3997,-37.9289,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>325 - SAN JUAN DE ANGOSTURA PART.</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107557979</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.4314,-37.9275,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>326 - MEMBRILLAR II</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -3873,6 +4041,18 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>326 - EL CHEQUEN Y OTROS</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107562146</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.6828,-37.8922,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>327 - SANTA MATILDE Y LOS OLIVO</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -3882,6 +4062,30 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-72.8953,-37.1658,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>327 - EL COMETA - INTERFAZ</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107564880</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.2161,-38.7136,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>328 - SAN ANTONIO DE ELOCOYAN</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107577653</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.6369,-39.3403,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -3909,6 +4113,30 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>329 - EL RETIRO III</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107616935</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.5033,-37.9325,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>330 - PARCELA 20 LIBERTAD CAMPE</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107617538</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.2386,-38.0669,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>330 - LA AGUADA - INTERFAZ</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -3918,6 +4146,18 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-72.4064,-37.2164,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>331 - LA SELVA</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107618292</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.1006,-38.0514,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -3957,6 +4197,18 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>334 - SAN MIGUEL</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107631922</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.095,-38.3811,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>334 - DIUCALEMU</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -3978,6 +4230,18 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-72.5331,-37.1428,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>336 - PORTAHUE</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107902726</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.720158361256,-38.546813919354,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -4005,6 +4269,30 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>337 - SAN SEBASTIAN PART.</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107906850</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.3142,-38.1936,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>338 - PARCELA CULLINCO Y OTROS</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107907759</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.2219,-38.3675,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>338 - MARDONAL Y OTRO PART.</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -4029,6 +4317,18 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>340 - EL ROSAL Y SAN CARLOS</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107923292</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.3717,-37.9597,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>341 - SANTA FILOMENA PART.</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -4038,6 +4338,30 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-72.8983,-37.4908,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>341 - EL MANZANO Y OTROS</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107927529</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.9644,-38.4117,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>343 - SAN ANTONIO DE ELOCOYAN</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107941604</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.6497,-39.0011,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -4065,6 +4389,18 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>345 - REQUEN Y MAGALLANES</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107945016</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.5406,-38.1208,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>345 - LA AGUADA PART.</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -4074,6 +4410,18 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-72.4547,-37.1714,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>346 - SANTA MARTA Y OTROS</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107947107</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.2131,-38.3436,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -4089,6 +4437,30 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>347 - MANZANACO</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107947693</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.4089,-38.2833,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>348 - LA SUERTE Y EL RADAL</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107968617</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.0869,-38.0275,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>348 - BUCALEMU LOTE A PART.</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -4098,6 +4470,30 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-72.3936,-37.1697,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>349 - LA SUERTE - MASISA</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107970732</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.1053,-38.035,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>350 - LAS DOS ANITAS B</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107973419</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.47,-38.5225,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -4113,6 +4509,18 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>352 - MAPULHUE A</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107978883</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.1008,-38.0228,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>353 - LA CAMELIA - INTERFAZ</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -4125,6 +4533,42 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>354 - SAN JUAN DE ANGOSTURA  PART.</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107985849</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.4222,-37.9214,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>355 - SAN ANTONIO DE ELOCOYAN</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107987109</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.6572,-39.3294,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>359 - PARCELA 17 CHEQUENCO</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108002032</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.4372,-38.0322,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>359 - LAS PLAYAS Y OTROS</name>
                 <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
                 <ExtendedData>
@@ -4134,6 +4578,18 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-73.3122,-38.1669,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>361 - SANTA MARTA Y OTROS</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108005747</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.2356,-38.3361,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -4314,6 +4770,18 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-72.2292,-37.1272,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>397 - LABRANZA</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-99954274</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.4006,-38.2397,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -4868,6 +5336,102 @@
                   <coordinates>-72.981258416592,-37.134580525001,0</coordinates>
                 </Point>
               </Placemark>
+              <Placemark>
+                <name>635 - CALABOZO (PARTICULAR)</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-107633419</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.112180542215,-36.990788906306,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>638 - QUILMO</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108000449</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.057777815725,-36.699444415226,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>644 - SANTA ROSA LOTE B</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108007003</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.6875,-37.5069,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>645 - LA SUERTE PART.</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108007891</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.6925,-37.5169,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>647 - PARCELAS GRANEROS PART</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108010586</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.5689,-37.6644,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>648 - SAN JOSE PONIENTE</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108011748</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.2447,-37.8764,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>651 - VEGA LARGA Y LAS COLMENA</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108022981</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.6303,-37.2753,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>652 - SANTA CLOTILDE PART.</name>
+                <styleUrl>#INCENDIO-EMPRESA-50</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-108023971</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.9158,-37.4292,0</coordinates>
+                </Point>
+              </Placemark>
           </Folder>
           <Folder>
             <name>Extinguido</name>
@@ -4920,57 +5484,105 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>345 - CONCA VIEJO (PARTICULAR)</name>
+                <name>572 - COIHUECO Y OTROS BIOBIO</name>
                 <styleUrl>#INCENDIO-EMPRESA-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107133752</SimpleData>
+                    <SimpleData name="ID">incendio-107300920</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.193333400513,-35.114722200066,0</coordinates>
+                  <coordinates>-72.986666735439,-36.741666649744,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>618 - LA CHUPALLAR (PARTICULAR)</name>
+                <name>649 - VEGUILLAS FBB (PARTICULAR)</name>
                 <styleUrl>#INCENDIO-EMPRESA-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107257143</SimpleData>
+                    <SimpleData name="ID">incendio-108014788</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.861388905475,-36.669999973624,0</coordinates>
+                  <coordinates>-72.87694452408,-36.583333325918,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
-                <name>619 - AGUA SONADORA FBB</name>
+                <name>650 - AGUAS NEGRAS</name>
                 <styleUrl>#INCENDIO-EMPRESA-90</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107263162</SimpleData>
+                    <SimpleData name="ID">incendio-108022350</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.827333402439,-36.735250031942,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
-                <name>620 - EL ROSARIO-S (PARTICULAR)</name>
-                <styleUrl>#INCENDIO-EMPRESA-90</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-107264070</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-72.520286098737,-36.828830603146,0</coordinates>
+                  <coordinates>-72.508861152151,-36.980000034545,0</coordinates>
                 </Point>
               </Placemark>
           </Folder>
       </Folder>
       <Folder>
         <name>Quema</name>
+          <Placemark>
+            <name>Calle Los Carreras N°103</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050448413</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.194777,-33.568717,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Chacra San Jose</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050430260</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.832649,-33.262158,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Chacra San Jose</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050430260</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.832649,-33.262158,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Chacra San Jose</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050430260</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.832649,-33.262158,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Chacra San Jose</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050430260</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.832649,-33.262158,0</coordinates>
+            </Point>
+          </Placemark>
           <Placemark>
             <name>Campo Lindo</name>
             <styleUrl>#QUEMA</styleUrl>
@@ -5008,27 +5620,39 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>El Almendral</name>
+            <name>Comunidad Agricola El Durazno</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050436332</SimpleData>
+                <SimpleData name="ID">quema-1050448478</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.665867,-33.865252,0</coordinates>
+              <coordinates>-71.433498,-30.704734,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>El Almendral</name>
+            <name>Comunidad Agricola El Durazno</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050436332</SimpleData>
+                <SimpleData name="ID">quema-1050448478</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.665867,-33.865252,0</coordinates>
+              <coordinates>-71.433498,-30.704734,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Comunidad Agricola El Durazno</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050448478</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.433498,-30.704734,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5044,27 +5668,27 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>Elsa Pasmino Ramos</name>
+            <name>El Trebol Pc 22</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050440687</SimpleData>
+                <SimpleData name="ID">quema-1050448774</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.757645,-33.831126,0</coordinates>
+              <coordinates>-70.761294,-33.557648,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Elsa Pasmino Ramos</name>
+            <name>El Trebol Pc 22</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050440687</SimpleData>
+                <SimpleData name="ID">quema-1050448774</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.757645,-33.831126,0</coordinates>
+              <coordinates>-70.761294,-33.557648,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5188,51 +5812,159 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>Fundo El Llano</name>
+            <name>Fundo Alhue Lote B</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050436684</SimpleData>
+                <SimpleData name="ID">quema-1050442649</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.567703,-33.651822,0</coordinates>
+              <coordinates>-71.244639,-34.058178,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Fundo El Llano</name>
+            <name>Fundo Alhue Lote B</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050436684</SimpleData>
+                <SimpleData name="ID">quema-1050442649</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.567703,-33.651822,0</coordinates>
+              <coordinates>-71.244639,-34.058178,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Frutera Lindero Ltda</name>
+            <name>Fundo El Bosque</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050434216</SimpleData>
+                <SimpleData name="ID">quema-1050449606</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.714863,-33.76489,0</coordinates>
+              <coordinates>-70.863569,-33.731434,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Frutera Lindero Ltda</name>
+            <name>Fundo El Bosque</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050434216</SimpleData>
+                <SimpleData name="ID">quema-1050449606</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.714863,-33.76489,0</coordinates>
+              <coordinates>-70.863569,-33.731434,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo El Bosque</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449606</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.863569,-33.731434,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo San Carlos</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050439997</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.830554,-33.626124,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo San Carlos</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050439997</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.830554,-33.626124,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo San Carlos</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050439997</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.830554,-33.626124,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo San Carlos</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050439997</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.830554,-33.626124,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo San Carlos 1</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050440018</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.784314,-33.629461,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo San Carlos 1</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050440018</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.784314,-33.629461,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo San Carlos 1</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050440018</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.784314,-33.629461,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Fundo San Carlos 1</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050440018</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.784314,-33.629461,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5281,78 +6013,6 @@
             </ExtendedData>
             <Point>
               <coordinates>-72.247916,-43.913107,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Fundo El Palpi</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050431030</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.668377,-33.766348,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Fundo El Palpi</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050431030</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.668377,-33.766348,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Fundo El Palpi</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050431030</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.668377,-33.766348,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Fundo El Madrigal</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050441784</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.870916,-33.646216,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Fundo El Madrigal</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050441784</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.870916,-33.646216,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Fundo El Madrigal</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050441784</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.870916,-33.646216,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5404,99 +6064,183 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>Fundo Santa Marta</name>
+            <name>Huerto 9</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050440591</SimpleData>
+                <SimpleData name="ID">quema-1050448545</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.874638,-33.817491,0</coordinates>
+              <coordinates>-71.153595,-33.740799,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Fundo Santa Marta</name>
+            <name>Huerto 9</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050440591</SimpleData>
+                <SimpleData name="ID">quema-1050448545</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.874638,-33.817491,0</coordinates>
+              <coordinates>-71.153595,-33.740799,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Fundo Santa Marta</name>
+            <name>Huerto 9</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050440591</SimpleData>
+                <SimpleData name="ID">quema-1050448545</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.874638,-33.817491,0</coordinates>
+              <coordinates>-71.153595,-33.740799,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Hijuela Nº7</name>
+            <name>Hijuela El Maien Lote 3</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050445672</SimpleData>
+                <SimpleData name="ID">quema-1050443453</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.542678,-33.6804,0</coordinates>
+              <coordinates>-70.758031,-33.624625,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Hijuela Nº7</name>
+            <name>Hijuela Las Sossas</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050445672</SimpleData>
+                <SimpleData name="ID">quema-1050447625</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.542678,-33.6804,0</coordinates>
+              <coordinates>-71.398563,-30.614013,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Huerto Nº 44 Lote C Colonia Kennedy</name>
+            <name>Hijuela Las Sossas</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050444057</SimpleData>
+                <SimpleData name="ID">quema-1050447625</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.756573,-33.855299,0</coordinates>
+              <coordinates>-71.398563,-30.614013,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Huerto Nº 44 Lote C Colonia Kennedy</name>
+            <name>Hijuela Las Sossas</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050444057</SimpleData>
+                <SimpleData name="ID">quema-1050447625</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.756573,-33.855299,0</coordinates>
+              <coordinates>-71.398563,-30.614013,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Huerto Nº 44 Lote C Colonia Kennedy</name>
+            <name>Hijuela Las Sossas</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050444057</SimpleData>
+                <SimpleData name="ID">quema-1050447625</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.756573,-33.855299,0</coordinates>
+              <coordinates>-71.398563,-30.614013,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Hijuela Nº2</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050448753</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.769938,-33.579564,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Hijuela Nº2</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050448753</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.769938,-33.579564,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Hijuela Nº2</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050448753</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.769938,-33.579564,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>La Primavera Pc 19</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050446307</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.827421,-33.628831,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>La Primavera Pc 19</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050446307</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.827421,-33.628831,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Lluta</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050448725</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Lluta</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050448725</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5545,6 +6289,18 @@
             </ExtendedData>
             <Point>
               <coordinates>-72.527415,-43.992364,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Lluta</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449354</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5692,6 +6448,42 @@
             </Point>
           </Placemark>
           <Placemark>
+            <name>Lote Cinco H - Mialqui</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449696</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.854471,-30.758234,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Lote Cinco H - Mialqui</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449696</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.854471,-30.758234,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Lote Cinco H - Mialqui</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449696</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.854471,-30.758234,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
             <name>Lote Seis</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
@@ -5701,6 +6493,42 @@
             </ExtendedData>
             <Point>
               <coordinates>-72.394421,-43.914086,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Lote Siete B</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449408</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.948494,-30.778415,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Lote Siete B</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449408</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.948494,-30.778415,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Lote Siete B</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449408</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.948494,-30.778415,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5728,99 +6556,483 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 1</name>
+            <name>Maria Vera Farias</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050436150</SimpleData>
+                <SimpleData name="ID">quema-1050442943</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-71.136837,-33.507026,0</coordinates>
+              <coordinates>-71.115099,-33.684604,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 1</name>
+            <name>Maria Vera Farias</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050436150</SimpleData>
+                <SimpleData name="ID">quema-1050442943</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-71.136837,-33.507026,0</coordinates>
+              <coordinates>-71.115099,-33.684604,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 10</name>
+            <name>Parcela 11</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050447061</SimpleData>
+                <SimpleData name="ID">quema-1050439791</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.928668,-33.701461,0</coordinates>
+              <coordinates>-70.798664,-33.626944,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 10</name>
+            <name>Parcela 11</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050447061</SimpleData>
+                <SimpleData name="ID">quema-1050445512</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.928668,-33.701461,0</coordinates>
+              <coordinates>-70.767777,-33.577665,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 28 Lote 6</name>
+            <name>Parcela 1988 C</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050433338</SimpleData>
+                <SimpleData name="ID">quema-1050440853</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.734683,-33.719677,0</coordinates>
+              <coordinates>-71.052702,-33.690084,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 28 Lote 6</name>
+            <name>Parcela 2 El Tranque</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050433338</SimpleData>
+                <SimpleData name="ID">quema-1050447921</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.734683,-33.719677,0</coordinates>
+              <coordinates>-70.837473,-33.65697,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 7 Sitio 2</name>
+            <name>Parcela 2 El Tranque</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050439750</SimpleData>
+                <SimpleData name="ID">quema-1050447921</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.975884,-33.694177,0</coordinates>
+              <coordinates>-70.837473,-33.65697,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 7 Sitio 2</name>
+            <name>Parcela 2 El Tranque</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050439750</SimpleData>
+                <SimpleData name="ID">quema-1050447921</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.975884,-33.694177,0</coordinates>
+              <coordinates>-70.837473,-33.65697,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 2 El Tranque</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050447921</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.837473,-33.65697,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 22</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442024</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.804954,-33.625671,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 22</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442024</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.804954,-33.625671,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 22</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442024</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.804954,-33.625671,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 28</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050447872</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.094789,-33.690838,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 28</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050447872</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.094789,-33.690838,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 28</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050447872</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.094789,-33.690838,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 2944</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050439476</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.879054,-33.767467,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 4 A Santa Elisa</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442790</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.991682,-33.575941,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 4 A Santa Elisa</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442790</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.991682,-33.575941,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 40</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442331</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.106263,-33.570292,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 40</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442331</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.101078,-33.571471,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 40</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442331</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.101078,-33.571471,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 40</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442331</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.101078,-33.571471,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 40</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442331</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.106263,-33.570292,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 40</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050442331</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.106263,-33.570292,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 42 Lote 6</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050450774</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.17064,-33.560162,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 42 Lote 6</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050450774</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.17064,-33.560162,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 6</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050446047</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.088984,-33.693903,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 6</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050446047</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.088984,-33.693903,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 62</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050446569</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.014992,-33.735836,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 7 B, Villa Eufemia</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050443550</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.723882,-33.612742,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela 7 B, Villa Eufemia</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050443550</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.723882,-33.612742,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela El Manzano</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449377</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.09506,-33.552448,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela El Manzano</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449377</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.09506,-33.552448,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela El Manzano</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449377</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.09506,-33.552448,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela El Manzano</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050449377</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-71.09506,-33.552448,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela Porvenir, Lote B5 Valle De Lluta</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050450083</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Parcela Porvenir, Lote B5 Valle De Lluta</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050450083</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Pc 13 Lt 1 A Valle De Lluta</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050450845</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Pc 13 Lt 1 A Valle De Lluta</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050450845</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Pc 13 Lt 1 A Valle De Lluta</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050450845</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5848,75 +7060,15 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>Parcela 1516 La Alborada</name>
+            <name>Parcela N°6 Lote C Asentamiento El Morro</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050443483</SimpleData>
+                <SimpleData name="ID">quema-1050449811</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.698253,-33.863583,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Parcela 16 B Linderos</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050433393</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.732528,-33.767069,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Parcela C1 Lote 1a La Esperanza</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050438865</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.533859,-33.646646,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Parcela C1 Lote 1a La Esperanza</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050438865</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.533859,-33.646646,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Reserva Mansel</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050436501</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.799604,-33.845661,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Reserva Mansel</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050436501</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.799604,-33.845661,0</coordinates>
+              <coordinates>-70.067276,-18.4513,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -5932,42 +7084,6 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>San Francisco De Paula</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050440165</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.957957,-33.680937,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>San Francisco De Paula</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050440165</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.957957,-33.680937,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>San Juan</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050442145</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.067276,-18.4513,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
             <name>Sandra Schillin Turra</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
@@ -5980,27 +7096,75 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>Sitio 199 Lote 2</name>
+            <name>Santa Gabriela Lote A</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050442618</SimpleData>
+                <SimpleData name="ID">quema-1050445935</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.782216,-33.728406,0</coordinates>
+              <coordinates>-70.759355,-33.62025,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Sitio 199 Lote 2</name>
+            <name>Santa Gabriela Lote A</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050442618</SimpleData>
+                <SimpleData name="ID">quema-1050445935</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.782216,-33.728406,0</coordinates>
+              <coordinates>-70.759355,-33.62025,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Santa Gabriela Lote A</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050445935</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.759355,-33.62025,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Santa Gabriela Lote A</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050445935</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.759355,-33.62025,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Santa Gabriela Lote A</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050445935</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.759355,-33.62025,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+            <name>Santa Gabriela Lote A</name>
+            <styleUrl>#QUEMA</styleUrl>
+            <ExtendedData>
+              <SchemaData schemaUrl="#sidco_schema">
+                <SimpleData name="ID">quema-1050445935</SimpleData>
+              </SchemaData>
+            </ExtendedData>
+            <Point>
+              <coordinates>-70.759355,-33.62025,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -6016,39 +7180,27 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>San Agustin</name>
+            <name>San Antonio</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050395974</SimpleData>
+                <SimpleData name="ID">quema-1050447654</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-72.547279,-43.982123,0</coordinates>
+              <coordinates>-72.443943,-43.938739,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
-            <name>Santa Ana De Cervera</name>
+            <name>San Pedro</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
               <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050439583</SimpleData>
+                <SimpleData name="ID">quema-1050447929</SimpleData>
               </SchemaData>
             </ExtendedData>
             <Point>
-              <coordinates>-70.797718,-33.755513,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Santa Ana De Cervera</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050439583</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.797718,-33.755513,0</coordinates>
+              <coordinates>-70.883634,-30.399003,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>
@@ -6088,30 +7240,6 @@
             </Point>
           </Placemark>
           <Placemark>
-            <name>Vina Montanara Parcela 12</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050439840</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.526285,-33.668988,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Vina Montanara Parcela 12</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050439840</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.526285,-33.668988,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
             <name>Vista Hermosa</name>
             <styleUrl>#QUEMA</styleUrl>
             <ExtendedData>
@@ -6145,42 +7273,6 @@
             </ExtendedData>
             <Point>
               <coordinates>-72.354947,-43.785096,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Yanet Soledad Tusco Aleluya</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050442536</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.067276,-18.4513,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Yanet Soledad Tusco Aleluya</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050442536</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.067276,-18.4513,0</coordinates>
-            </Point>
-          </Placemark>
-          <Placemark>
-            <name>Azapa 0-12</name>
-            <styleUrl>#QUEMA</styleUrl>
-            <ExtendedData>
-              <SchemaData schemaUrl="#sidco_schema">
-                <SimpleData name="ID">quema-1050443393</SimpleData>
-              </SchemaData>
-            </ExtendedData>
-            <Point>
-              <coordinates>-70.116553,-18.556394,0</coordinates>
             </Point>
           </Placemark>
           <Placemark>

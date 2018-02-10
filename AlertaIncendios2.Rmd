@@ -1,16 +1,15 @@
 
-<script>
-   $(document).ready(function() {
-     $head = $('#header');
-     $head.prepend('<img src=\"insigniaOK.jpg\" style=\"float: right;width: 150px;\"/>')
-   });
-</script>
+<!-- <script> -->
+<!--    $(document).ready(function() { -->
+<!--      $head = $('#header'); -->
+<!--      $head.prepend('<img src=\"insigniaOK.jpg\" style=\"float: right;width: 150px;\"/>') -->
+<!--    }); -->
+<!-- </script> -->
 
 ---
 Format: ![Alt Text](url)
-
 title: Sitios de conservación en potencial riesgo ante los incendios forestales actuales
-author: "UNIDAD DE MONITOREO y PREDICCIÓN (COE GASP)"  
+author: "UNIDAD DE MONITOREO y PREDICCIÓN (COE GASP) CONAF"  
 output: html_document
 --- 
 
@@ -18,7 +17,7 @@ output: html_document
 
 ##### **Fecha: ** `r format(Sys.time(), '%d %B, %Y')`  
 ##### **Hora: ** `r format(Sys.time(), '%H:%M')`
-##### **Reporte N°: **1
+
 ***
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -40,6 +39,11 @@ library(rjson)
 library(leaflet)
 library(XML)
 library(plyr)
+library(knitr)
+library(kableExtra)
+library(utf8)
+library(RCurl)
+
 
 ## Esta formula recodifica el texto 
   iconv.data.frame<-function (df, ...)
@@ -67,7 +71,6 @@ library(plyr)
 
 download.file("http://sidco.conaf.cl/mapa/earth-data.php?key=RCgHMdVM6VomYlj8IDU%2B9dDVAqFnon8jfj4hfRmLQ8U%3D" 
                             ,"sidcoweb", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
-
 
 doc <- xmlTreeParse("sidcoweb",getDTD=T,addAttributeNamespaces=T)
 arriba = xmlRoot(doc)
@@ -257,7 +260,6 @@ myICP<-subset(mySC,mySC@data$Tipoc=="ICP")
 myAAVC<-subset(mySC,mySC@data$Tipoc=="AAVC")
 myASP<-subset(mySC,mySC@data$Tipoc=="SNASPE")
 
-
 nSC<-mySC_utm@data[3]
 
 ## join de ubicacion
@@ -337,9 +339,19 @@ compi<-iconv.data.frame(compi,from="UTF8",to="latin1")
 #### Resumen de los sitios que actualmente presentan afectación potencial:  
 
 ```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
-library(knitr)
+
+#coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Sitio","Tipo de protección","Distancia al foco (km)")
+#kable(compi, row.names = NA,col.names = coln)
+
+critic<-as.numeric(row.names(subset(compi,compi$Distancia.Foco..Km.==0)))
+
 coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Sitio","Tipo de protección","Distancia al foco (km)")
-kable(compi, row.names = NA,col.names = coln)
+
+kable(compi, col.names = coln) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(critic[1], bold = T, color="red") %>%
+  row_spec(critic[2], bold = T, color="red")
+
 
 ```
 
@@ -352,11 +364,8 @@ kable(compi, row.names = NA,col.names = coln)
 **AAVC**   = Áreas de Alto Valor para la Conservación.
    
 ***
-Escribe aquí tus comentarios:  
-
-<textarea name="comentarios" rows="6" cols="130"></textarea>
-
-## Mapa de distribución de focos registrados a menos de 5 km de Sitios de Conservasión:
+  
+## Mapa interactivo de la distribución de focos registrados a menos de 5 kilometros de Sitios de Conservasión:
 
 <!-- as.character(spa$Name) -->
 <!-- iconv.data.frame(as.character(spa$Name),from="UTF8",to="latin1") -->
@@ -372,7 +381,7 @@ tsp<-iconv.data.frame(as.data.frame(as.character(mySP@data[,2])),from="UTF8",to=
 ticp<-iconv.data.frame(as.data.frame(as.character(myICP@data[,2])),from="UTF8",to="latin1")
 taavc<-iconv.data.frame(as.data.frame(as.character(myAAVC@data[,2])),from="UTF8",to="latin1")
 
-# nombres 
+# nombres
 nasp<-iconv.data.frame(as.data.frame(as.character(myASP@data[,3])),from="UTF8",to="latin1")
 nsn<-iconv.data.frame(as.data.frame(as.character(mySN@data[,3])),from="UTF8",to="latin1")
 nbnp<-iconv.data.frame(as.data.frame(as.character(myBNP@data[,3])),from="UTF8",to="latin1")
@@ -386,13 +395,13 @@ leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImag
                 popup = paste("Foco: ", as.character(spa$Name) ), group = "SIDCO") %>%
     # setView(lng = min(spa$longitude), lat = min(spa$latitude), zoom = 7) %>%
      fitBounds(lng1=min(spa$longitude),lat1=min(spa$latitude),lng2=max(spa$longitude),lat2=max(spa$latitude))%>%
-    
+
      addCircles(data = spa,radius = 5,fill = T,stroke = TRUE, color = "#FF0000",
                 popup = paste("Foco: ", as.character(spa$Name) )) %>%
-    
+
      addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#12D502", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(tasp[,1])," : ", as.character(nasp[,1])), group = "SNASPE") %>%
-     addPolygons(data = mySN, fill = TRUE, stroke = TRUE, color = "#0B6803", highlightOptions = highlightOptions(color = "white", weight = 2),
+     addPolygons(data = mySN, fill = TRUE, stroke = TRUE, color = "#FFFFFF", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(tsn[,1])," : ", as.character(nsn[,1])), group = "SN") %>%
      addPolygons(data = myBNP, fill = TRUE, stroke = TRUE, color = "#FCEE07", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(tbnp[,1])," : ", as.character(nbnp[,1])), group = "BNP") %>%
@@ -401,10 +410,10 @@ leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImag
      addPolygons(data = myICP, fill = TRUE, stroke = TRUE, color = "#049BE2", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(ticp[,1])," : ", as.character(nicp[,1])), group = "ICP") %>%
      addPolygons(data = myAAVC, fill = TRUE, stroke = TRUE, color = "#E204D8", highlightOptions = highlightOptions(color = "white", weight = 2),
-                popup = paste(as.character(taavc[,1])," : ", as.character(naavc[,1])), group = "AAVC") %>% 
+                popup = paste(as.character(taavc[,1])," : ", as.character(naavc[,1])), group = "AAVC") %>%
 
-    addLegend("bottomright", colors = c("#FF0000", "#12D502","#0B6803","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%   
-    addLayersControl(overlayGroups = c("SIDCO","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))%>% 
+    addLegend("bottomright", colors = c("#FF0000", "#12D502","#FFFFFF","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%
+    addLayersControl(overlayGroups = c("SIDCO","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))%>%
      hideGroup(c("SNASPE","SN","BNP","SP","ICP","AAVC"))
 
 
@@ -412,6 +421,20 @@ leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImag
 ```
 
 ***
+Escribe aquí tus comentarios:  
 
-  
+<textarea name="comentarios" rows="6" cols="130"></textarea>
+
+***
+
+```{r logo, echo=FALSE,fig.align='center'}
+knitr::include_graphics("conaf-mas-gob.jpg")
+
+
+#ftpUpload("AlertaIncendios2.html", "ftp://alertabioincendios:Ch0c0lat3@files.000webhost.com/public_html/AlertaIncendios2.html")
+
+
+
+```
+
   
