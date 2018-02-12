@@ -148,7 +148,36 @@ lon<-spl[[1]][1]
 lat<-spl[[1]][2]
 uni10<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
 
-BajOb<-rbind(uni,uni2,uni3,uni4,uni5,uni6,uni7,uni8,uni9,uni10)
+tmn<-BajoObs$Placemark.name.10[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.10[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni11<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.11[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.11[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni12<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.12[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.12[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni13<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.13[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.13[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni14<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+
+BajOb<-rbind(uni,uni2,uni3,uni4,uni5,uni6,uni7,uni8,uni9,uni10,uni11,uni12,uni13,uni14)
 BajOb<-cbind(Estado="Bajo observacion",BajOb)
 
 BajoObs<-subset(sidco1,sidco1$name=="En Combate")
@@ -223,8 +252,35 @@ lon<-spl[[1]][1]
 lat<-spl[[1]][2]
 uni10<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
 
+tmn<-BajoObs$Placemark.name.10[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.10[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni11<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
 
-EnComb<-rbind(uni,uni2,uni3,uni4,uni5,uni6,uni7,uni8,uni9,uni10)
+tmn<-BajoObs$Placemark.name.11[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.11[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni12<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.12[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.12[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni13<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.13[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.13[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni14<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+EnComb<-rbind(uni,uni2,uni3,uni4,uni5,uni6,uni7,uni8,uni9,uni10,uni11,uni12,uni13,uni14)
 EnComb<-cbind(Estado="En Combate",EnComb)
 sid<-na.omit(rbind(EnComb,BajOb))
 
@@ -267,6 +323,9 @@ nSC<-mySC_utm@data[3]
 myRCP <- readOGR("data/union_rpc.shp", encoding = "UTF-8")
 projection(myRCP)<- CRS("+proj=longlat +datum=WGS84")
 
+myReg <- readOGR("data/Regiones.shp", encoding = "UTF-8")
+projection(myReg)<- CRS("+proj=longlat +datum=WGS84")
+
 rcp<-over(mySIDCO, myRCP)
 
 ## SIDCO
@@ -294,6 +353,8 @@ unicos<-unique(merge(datafin,fre,by="Name"))
 
 resumen<-NULL
 
+## Posible atasco por nombre de ASP igual
+
 for (i in 1:dim(unicos)[1]){
   
   x<-unicos[i,]
@@ -303,7 +364,7 @@ for (i in 1:dim(unicos)[1]){
   
   for (h in 1:f) {
     n1<-names(s[h])[which.min(apply(s[h],MARGIN=2,min))]
-    n2<-subset(nSC2,nSC2$NAME==n1)
+    n2<-subset(nSC2,nSC2$NAME==n1)## aqui posible bugs por nombre de ASP iguales
     n2<-as.character(n2$Tipoc)
     n3<-(s[h])[which.min(apply(s[h],MARGIN=2,min))]
     n3<-round(as.numeric(n3[1])/1000,2)
@@ -327,6 +388,66 @@ projection(spa)<- CRS("+proj=longlat +datum=WGS84")
   
 compi<-iconv.data.frame(compi,from="UTF8",to="latin1")
 
+# ## Descargar HotSpot
+
+download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/viirs/csv/VNP14IMGTDL_NRT_South_America_48h.csv"
+              ,"modis", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+
+download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_South_America_48h.csv"
+              ,"viirs", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+
+modis<-read.csv("modis",sep=",",dec=".",header=T)
+viirs<-read.csv("viirs",sep=",",dec=".",header=T)
+coordinates(modis) <- ~longitude+latitude
+projection(modis) <- CRS("+proj=longlat +datum=WGS84")
+coordinates(viirs) <- ~longitude+latitude
+projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
+
+## Filtrar por limites nacionales
+
+st_mod <- modis[myShape, ]
+st_mod_utm<-spTransform(st_mod, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+st_vii <- viirs[myShape, ]
+st_vii_utm<-spTransform(st_vii, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+
+## Calcular distancia a...
+
+## MODIS
+dist.mod<-as.data.frame(gDistance(mySC_utm, st_mod_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+nASP<-as.data.frame(mySC_utm)
+
+colnames(dist.mod)<-nASP[,3]
+dist.modis <- cbind(acq_date=st_mod_utm@data$acq_date, dist.mod)
+dist.modis <- cbind(st_mod@coords, dist.modis)
+dist.modis <- cbind(ID=row.names(dist.modis), dist.modis)
+name_asp<-as.data.frame(mySC)
+name_asp<-unique(name_asp$NAME)
+#
+#
+sMODIS<-NULL
+for (i in 5:505){
+  d1<-subset(dist.modis,dist.modis[,i]<5000)
+  sMODIS<-rbind(sMODIS,d1)
+}
+
+coordinates(sMODIS)<-~longitude+latitude
+projection(sMODIS)<- CRS("+proj=longlat +datum=WGS84")
+#
+## Viirs
+dist.vii<-as.data.frame(gDistance(mySC_utm, st_vii_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+colnames(dist.vii)<-nASP[,3]
+dist.viis <- cbind(st_vii_utm@data, dist.vii)
+dist.viis <- cbind(st_vii@coords, dist.viis)
+dist.viis <- cbind(ID=row.names(dist.viis), dist.viis)
+
+sVIIRS<-NULL
+for (i in 15:515){
+  d1<-subset(dist.viis,dist.viis[,i]<5000)
+  sVIIRS<-rbind(sVIIRS,d1)
+}
+
+coordinates(sVIIRS)<-~longitude+latitude
+projection(sVIIRS)<- CRS("+proj=longlat +datum=WGS84")
 
 ```
 
@@ -398,6 +519,13 @@ leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImag
 
      addCircles(data = spa,radius = 5,fill = T,stroke = TRUE, color = "#FF0000",
                 popup = paste("Foco: ", as.character(spa$Name) )) %>%
+     addCircles(data = sVIIRS,radius = 50,fill = T,stroke = TRUE, color = "#FFB233",
+                popup = paste("Fecha: ", as.character(sVIIRS$acq_date)), group = "Punto de calor VIIRS 48h") %>%
+     addCircles(data = sMODIS,radius = 50,fill = T,stroke = TRUE, color = "#FFB233",
+                popup = paste("Fecha: ", as.character(sMODIS$acq_date)), group = "Punto de calor MODIS 48h") %>%
+  
+     addPolygons(data = myReg, fill = F, stroke = TRUE, color = "#000000",dashArray = "3",highlightOptions = highlightOptions(color = "white", weight = 2), popup = paste("Región: "," : ", as.character(myReg$NOMBRE)), group = "Límite Regional") %>%
+     # addPolygons(data = myRCP, fill = F, stroke = TRUE, color = "#000000",dashArray = "3",highlightOptions = highlightOptions(color = "white", weight = 2),popup = paste("Comuna: "," : ", as.character(myRCP$Comuna)), group = "Límite Comunal") %>%
 
      addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#12D502", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(tasp[,1])," : ", as.character(nasp[,1])), group = "SNASPE") %>%
@@ -412,9 +540,10 @@ leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImag
      addPolygons(data = myAAVC, fill = TRUE, stroke = TRUE, color = "#E204D8", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(taavc[,1])," : ", as.character(naavc[,1])), group = "AAVC") %>%
 
-    addLegend("bottomright", colors = c("#FF0000", "#12D502","#FFFFFF","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%
-    addLayersControl(overlayGroups = c("SIDCO","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))%>%
-     hideGroup(c("SNASPE","SN","BNP","SP","ICP","AAVC"))
+    addLegend("bottomright", colors = c("#FF0000","#FFB233","#000000","#12D502","#FFFFFF","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","Puntos de calor","Límites Administrativos","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%
+    
+  addLayersControl(overlayGroups = c("SIDCO","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","Límite Regional","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))%>%
+     hideGroup(c("Límite Regional","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC"))
 
 
 
@@ -431,7 +560,7 @@ Escribe aquí tus comentarios:
 knitr::include_graphics("conaf-mas-gob.jpg")
 
 
-#ftpUpload("AlertaIncendios2.html", "ftp://alertabioincendios:Ch0c0lat3@files.000webhost.com/public_html/AlertaIncendios2.html")
+#ftpUpload("AlertaIncendios2.html", "ftp://files.000webhost.com:Ch0c0lat3@alertabioincendios")
 
 
 

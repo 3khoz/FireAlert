@@ -1,0 +1,573 @@
+
+<!-- <script> -->
+<!--    $(document).ready(function() { -->
+<!--      $head = $('#header'); -->
+<!--      $head.prepend('<img src=\"insigniaOK.jpg\" style=\"float: right;width: 150px;\"/>') -->
+<!--    }); -->
+<!-- </script> -->
+
+---
+Format: ![Alt Text](url)
+title: Sitios de conservación en potencial riesgo ante los incendios forestales actuales
+author: "UNIDAD DE MONITOREO y PREDICCIÓN (COE GASP) CONAF"  
+output: html_document
+--- 
+
+![](barra.jpg) 
+
+##### **Fecha: ** `r format(Sys.time(), '%d %B, %Y')`  
+##### **Hora: ** `r format(Sys.time(), '%H:%M')`
+
+***
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+  
+
+
+```{r cars, results='hide',message = FALSE, warning = FALSE}
+
+library(raster)
+library(rgdal)
+library(maptools)
+library(sp)
+library(geosphere)
+library(rgeos)
+library(rJava)
+library(OpenStreetMap)
+library(rjson)
+library(leaflet)
+library(XML)
+library(plyr)
+library(knitr)
+library(kableExtra)
+library(utf8)
+library(RCurl)
+
+
+## Esta formula recodifica el texto 
+  iconv.data.frame<-function (df, ...)
+  {
+    df.names <- iconv(names(df), ...)
+    df.rownames <- iconv(rownames(df), ...)
+    names(df) <- df.names
+    rownames(df) <- df.rownames
+    df.list <- lapply(df, function(x) {
+      if (class(x) == "factor") {
+        x <- factor(iconv(as.character(x), ...))
+      }
+      else if (class(x) == "character") {
+        x <- iconv(x, ...)
+      }
+      else {
+        x
+      }
+    })
+    df.new <- do.call("data.frame", df.list)
+    return(df.new)
+  }
+
+## Funcion kml
+
+download.file("http://sidco.conaf.cl/mapa/earth-data.php?key=RCgHMdVM6VomYlj8IDU%2B9dDVAqFnon8jfj4hfRmLQ8U%3D" 
+                            ,"sidcoweb", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+
+doc <- xmlTreeParse("sidcoweb",getDTD=T,addAttributeNamespaces=T)
+arriba = xmlRoot(doc)
+sub<-arriba[["Document"]][["Folder"]]
+sidco1=ldply(xmlToList(sub), data.frame)
+BajoObs<-subset(sidco1,sidco1$name=="Bajo observacion")
+
+tmn<-BajoObs$Placemark.name[1]
+tmc<-as.character(BajoObs$Placemark.coordinates[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.1[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.1[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni2<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.2[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.2[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni3<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.3[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.3[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni4<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.4[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.4[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni5<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.5[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.5[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni6<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.6[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.6[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni7<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.7[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.7[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni8<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.8[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.8[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni9<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.9[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.9[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni10<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.10[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.10[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni11<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.11[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.11[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni12<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.12[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.12[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni13<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.13[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.13[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni14<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+
+BajOb<-rbind(uni,uni2,uni3,uni4,uni5,uni6,uni7,uni8,uni9,uni10,uni11,uni12,uni13,uni14)
+BajOb<-cbind(Estado="Bajo observacion",BajOb)
+
+BajoObs<-subset(sidco1,sidco1$name=="En Combate")
+
+tmn<-BajoObs$Placemark.name[1]
+tmc<-as.character(BajoObs$Placemark.coordinates[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.1[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.1[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni2<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.2[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.2[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni3<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.3[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.3[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni4<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.4[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.4[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni5<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.5[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.5[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni6<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.6[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.6[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni7<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.7[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.7[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni8<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.8[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.8[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni9<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.9[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.9[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni10<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.10[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.10[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni11<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.11[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.11[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni12<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.12[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.12[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni13<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+tmn<-BajoObs$Placemark.name.13[1]
+tmc<-as.character(BajoObs$Placemark.coordinates.13[1])
+spl<-strsplit(tmc,",")
+lon<-spl[[1]][1]
+lat<-spl[[1]][2]
+uni14<-cbind(Name=as.character(tmn),longitude=lon,latitude=lat)
+
+EnComb<-rbind(uni,uni2,uni3,uni4,uni5,uni6,uni7,uni8,uni9,uni10,uni11,uni12,uni13,uni14)
+EnComb<-cbind(Estado="En Combate",EnComb)
+sid<-na.omit(rbind(EnComb,BajOb))
+
+sid<-iconv.data.frame(as.data.frame(sid),from="UTF8",to="latin1")
+sid$longitude<-as.numeric(as.character(sid$longitude))
+sid$latitude<-as.numeric(as.character(sid$latitude))
+coordinates(sid)<-~longitude+latitude
+projection(sid)<- CRS("+proj=longlat +datum=WGS84")
+mySIDCO<-sid
+mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+
+## Filtrar por limites nacionales
+
+myShape <- readOGR("Data/Chile_continental.shp")
+projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
+
+## Cargar datos SIDCO
+
+# mySIDCO <- readOGR("data/sidco_07022018m.shp", encoding = "UTF-8")
+# projection(mySIDCO)<- CRS("+proj=longlat +datum=WGS84")
+# mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+
+## Cargar coberturas de prioridad
+
+mySC <- readOGR("data/Proteccion2.shp", encoding = "UTF-8")
+projection(mySC)<- CRS("+proj=longlat +datum=WGS84")
+mySC_utm<-spTransform(mySC, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+
+mySN<-subset(mySC,mySC@data$Tipoc=="SN")
+myBNP<-subset(mySC,mySC@data$Tipoc=="BNP")
+mySP<-subset(mySC,mySC@data$Tipoc=="SP")
+myICP<-subset(mySC,mySC@data$Tipoc=="ICP")
+myAAVC<-subset(mySC,mySC@data$Tipoc=="AAVC")
+myASP<-subset(mySC,mySC@data$Tipoc=="SNASPE")
+
+nSC<-mySC_utm@data[3]
+
+## join de ubicacion
+
+myRCP <- readOGR("data/union_rpc.shp", encoding = "UTF-8")
+projection(myRCP)<- CRS("+proj=longlat +datum=WGS84")
+
+myReg <- readOGR("data/Regiones.shp", encoding = "UTF-8")
+projection(myReg)<- CRS("+proj=longlat +datum=WGS84")
+
+rcp<-over(mySIDCO, myRCP)
+
+## SIDCO
+dist.SIDCO<-as.data.frame(gDistance(mySC_utm, mySIDCO_utm, byid=TRUE)) # filas son SNASPE y columnas hotspot
+colnames(dist.SIDCO)<-nSC[,1]
+
+dist.SIDCOs <- cbind(mySIDCO_utm@data, dist.SIDCO)
+dist.SIDCOs <- cbind(rcp[2:5],dist.SIDCOs)
+cord<-mySIDCO@coords[,1:2]
+colnames(cord)<-c("longitude","latitude")
+dist.SIDCOs <- cbind(cord, dist.SIDCOs)
+dist.SIDCOs<- cbind(ID=row.names(dist.SIDCOs), dist.SIDCOs)
+
+sSIDCOs<-NULL
+for (i in 10:510){
+  d1<-subset(dist.SIDCOs,dist.SIDCOs[,i]<5000)
+  sSIDCOs<-rbind(sSIDCOs,d1)
+}
+
+datafin<-as.data.frame(sSIDCOs)
+
+frecuen<-as.data.frame(summary(datafin$Name))
+fre<-cbind(Name=row.names(frecuen),Frecuencia=frecuen$`summary(datafin$Name)`)
+unicos<-unique(merge(datafin,fre,by="Name"))
+
+resumen<-NULL
+
+## Posible atasco por nombre de ASP igual
+
+for (i in 1:dim(unicos)[1]){
+  
+  x<-unicos[i,]
+  f<-as.numeric(as.character(x$Frecuencia))
+  s<-sort(x[10:510])
+  nSC2<-mySC@data[2:5]
+  
+  for (h in 1:f) {
+    n1<-names(s[h])[which.min(apply(s[h],MARGIN=2,min))]
+    n2<-subset(nSC2,nSC2$NAME==n1)## aqui posible bugs por nombre de ASP iguales
+    n2<-as.character(n2$Tipoc)
+    n3<-(s[h])[which.min(apply(s[h],MARGIN=2,min))]
+    n3<-round(as.numeric(n3[1])/1000,2)
+    nf<-cbind(x[1:9],Sitio=n1,Tipo=n2,"Distancia Foco (Km)"=n3)
+    resumen<-rbind(resumen,nf)
+}}
+
+Situni<-unique(resumen$Sitio)
+tablex<-subset(mySC,mySC$NAME==Situni)
+
+
+#name1<-gsub('.*/(.*)','\\1',resumen$FolderPath)
+name1<-resumen$Estado
+
+compi<-cbind(Incendio=resumen[1],resumen[5:8],Estado=name1,resumen[10:12])
+compi<-compi[order(compi$Orden, compi$`Distancia Foco (Km)`),]
+compi<-compi[,-5]
+
+spa<-cbind(Incendio=resumen[1],resumen[3:4],resumen[5:8],Estado=name1,resumen[10:12])
+
+
+library(sp)
+coordinates(spa)<-~longitude+latitude
+projection(spa)<- CRS("+proj=longlat +datum=WGS84")
+  
+compi<-iconv.data.frame(compi,from="UTF8",to="latin1")
+
+# ## Descargar HotSpot
+
+download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/viirs/csv/VNP14IMGTDL_NRT_South_America_48h.csv"
+              ,"modis", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+
+download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_South_America_48h.csv"
+              ,"viirs", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+
+modis<-read.csv("modis",sep=",",dec=".",header=T)
+viirs<-read.csv("viirs",sep=",",dec=".",header=T)
+coordinates(modis) <- ~longitude+latitude
+projection(modis) <- CRS("+proj=longlat +datum=WGS84")
+coordinates(viirs) <- ~longitude+latitude
+projection(viirs) <- CRS("+proj=longlat +datum=WGS84")
+
+## Filtrar por limites nacionales
+
+st_mod <- modis[myShape, ]
+st_mod_utm<-spTransform(st_mod, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+st_vii <- viirs[myShape, ]
+st_vii_utm<-spTransform(st_vii, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
+
+## Calcular distancia a...
+
+## MODIS
+dist.mod<-as.data.frame(gDistance(mySC_utm, st_mod_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+nASP<-as.data.frame(mySC_utm)
+
+colnames(dist.mod)<-nASP[,3]
+dist.modis <- cbind(acq_date=st_mod_utm@data$acq_date, dist.mod)
+dist.modis <- cbind(st_mod@coords, dist.modis)
+dist.modis <- cbind(ID=row.names(dist.modis), dist.modis)
+name_asp<-as.data.frame(mySC)
+name_asp<-unique(name_asp$NAME)
+#
+#
+sMODIS<-NULL
+for (i in 5:505){
+  d1<-subset(dist.modis,dist.modis[,i]<5000)
+  sMODIS<-rbind(sMODIS,d1)
+}
+
+coordinates(sMODIS)<-~longitude+latitude
+projection(sMODIS)<- CRS("+proj=longlat +datum=WGS84")
+#
+## Viirs
+dist.vii<-as.data.frame(gDistance(mySC_utm, st_vii_utm,  byid=TRUE)) # filas son SNASPE y columnas hotspot
+colnames(dist.vii)<-nASP[,3]
+dist.viis <- cbind(st_vii_utm@data, dist.vii)
+dist.viis <- cbind(st_vii@coords, dist.viis)
+dist.viis <- cbind(ID=row.names(dist.viis), dist.viis)
+
+sVIIRS<-NULL
+for (i in 15:515){
+  d1<-subset(dist.viis,dist.viis[,i]<5000)
+  sVIIRS<-rbind(sVIIRS,d1)
+}
+
+coordinates(sVIIRS)<-~longitude+latitude
+projection(sVIIRS)<- CRS("+proj=longlat +datum=WGS84")
+
+```
+
+#  
+#  
+
+#### El día de hoy se han detectado **`r format(length(unique(compi$Name)))`** focos de incendios que se encuentra a menos de 5 km de **`r format(length(unique(compi$Sitio)))`** sitios de conservación distribuidos en **`r format(length(unique(compi$Region)))`** regiones
+
+***
+#### Resumen de los sitios que actualmente presentan afectación potencial:  
+
+```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
+
+#coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Sitio","Tipo de protección","Distancia al foco (km)")
+#kable(compi, row.names = NA,col.names = coln)
+
+critic<-as.numeric(row.names(subset(compi,compi$Distancia.Foco..Km.==0)))
+
+coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Sitio","Tipo de protección","Distancia al foco (km)")
+
+kable(compi, col.names = coln) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(critic[1], bold = T, color="red") %>%
+  row_spec(critic[2], bold = T, color="red")
+
+
+```
+
+***
+**SNASPE** = Sistema Nacional de Áreas Silvestres Protegidas del Estado, 
+**SN**     = Santuario de la Naturaleza, 
+**BNP**    = Bien Nacional Protegido, 
+**SP**     = Sitio Prioritario para la Conservación, 
+**ICP**    = Iniciatica de Conservación Privada, 
+**AAVC**   = Áreas de Alto Valor para la Conservación.
+   
+***
+  
+## Mapa interactivo de la distribución de focos registrados a menos de 5 kilometros de Sitios de Conservasión:
+
+<!-- as.character(spa$Name) -->
+<!-- iconv.data.frame(as.character(spa$Name),from="UTF8",to="latin1") -->
+
+```{r pressure, echo=FALSE}
+
+# Tipos
+
+tasp<-iconv.data.frame(as.data.frame(as.character(myASP@data[,2])),from="UTF8",to="latin1")
+tsn<-iconv.data.frame(as.data.frame(as.character(mySN@data[,2])),from="UTF8",to="latin1")
+tbnp<-iconv.data.frame(as.data.frame(as.character(myBNP@data[,2])),from="UTF8",to="latin1")
+tsp<-iconv.data.frame(as.data.frame(as.character(mySP@data[,2])),from="UTF8",to="latin1")
+ticp<-iconv.data.frame(as.data.frame(as.character(myICP@data[,2])),from="UTF8",to="latin1")
+taavc<-iconv.data.frame(as.data.frame(as.character(myAAVC@data[,2])),from="UTF8",to="latin1")
+
+# nombres
+nasp<-iconv.data.frame(as.data.frame(as.character(myASP@data[,3])),from="UTF8",to="latin1")
+nsn<-iconv.data.frame(as.data.frame(as.character(mySN@data[,3])),from="UTF8",to="latin1")
+nbnp<-iconv.data.frame(as.data.frame(as.character(myBNP@data[,3])),from="UTF8",to="latin1")
+nsp<-iconv.data.frame(as.data.frame(as.character(mySP@data[,3])),from="UTF8",to="latin1")
+nicp<-iconv.data.frame(as.data.frame(as.character(myICP@data[,3])),from="UTF8",to="latin1")
+naavc<-iconv.data.frame(as.data.frame(as.character(myAAVC@data[,3])),from="UTF8",to="latin1")
+
+
+leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImagery) %>%
+     addCircles(data = spa,radius = 5000 ,fill = T, fillOpacity = .08,stroke = T, color = "#FF0000",
+                popup = paste("Foco: ", as.character(spa$Name) ), group = "SIDCO") %>%
+    # setView(lng = min(spa$longitude), lat = min(spa$latitude), zoom = 7) %>%
+     fitBounds(lng1=min(spa$longitude),lat1=min(spa$latitude),lng2=max(spa$longitude),lat2=max(spa$latitude))%>%
+
+     addCircles(data = spa,radius = 5,fill = T,stroke = TRUE, color = "#FF0000",
+                popup = paste("Foco: ", as.character(spa$Name) )) %>%
+     addCircles(data = sVIIRS,radius = 50,fill = T,stroke = TRUE, color = "#FFB233",
+                popup = paste("Fecha: ", as.character(sVIIRS$acq_date)), group = "Punto de calor VIIRS 48h") %>%
+     addCircles(data = sMODIS,radius = 50,fill = T,stroke = TRUE, color = "#FFB233",
+                popup = paste("Fecha: ", as.character(sMODIS$acq_date)), group = "Punto de calor MODIS 48h") %>%
+  
+     addPolygons(data = myReg, fill = F, stroke = TRUE, color = "#000000",dashArray = "3",highlightOptions = highlightOptions(color = "white", weight = 2), popup = paste("Región: "," : ", as.character(myReg$NOMBRE)), group = "Límite Regional") %>%
+     # addPolygons(data = myRCP, fill = F, stroke = TRUE, color = "#000000",dashArray = "3",highlightOptions = highlightOptions(color = "white", weight = 2),popup = paste("Comuna: "," : ", as.character(myRCP$Comuna)), group = "Límite Comunal") %>%
+
+     addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#12D502", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(tasp[,1])," : ", as.character(nasp[,1])), group = "SNASPE") %>%
+     addPolygons(data = mySN, fill = TRUE, stroke = TRUE, color = "#FFFFFF", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(tsn[,1])," : ", as.character(nsn[,1])), group = "SN") %>%
+     addPolygons(data = myBNP, fill = TRUE, stroke = TRUE, color = "#FCEE07", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(tbnp[,1])," : ", as.character(nbnp[,1])), group = "BNP") %>%
+     addPolygons(data = mySP, fill = TRUE, stroke = TRUE, color = "#E2A904", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(tsp[,1])," : ", as.character(nsp[,1])), group = "SP") %>%
+     addPolygons(data = myICP, fill = TRUE, stroke = TRUE, color = "#049BE2", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(ticp[,1])," : ", as.character(nicp[,1])), group = "ICP") %>%
+     addPolygons(data = myAAVC, fill = TRUE, stroke = TRUE, color = "#E204D8", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(taavc[,1])," : ", as.character(naavc[,1])), group = "AAVC") %>%
+
+    addLegend("bottomright", colors = c("#FF0000","#FFB233","#000000","#12D502","#FFFFFF","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","Puntos de calor","Límites Administrativos","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%
+    
+  addLayersControl(overlayGroups = c("SIDCO","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","Límite Regional","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))%>%
+     hideGroup(c("Límite Regional","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC"))
+
+
+
+```
+
+***
+Escribe aquí tus comentarios:  
+
+<textarea name="comentarios" rows="6" cols="130"></textarea>
+
+***
+
+```{r logo, echo=FALSE,fig.align='center'}
+knitr::include_graphics("conaf-mas-gob.jpg")
+
+
+#ftpUpload("AlertaIncendios2.html", "ftp://files.000webhost.com:Ch0c0lat3@alertabioincendios")
+
+
+
+```
+
+  
