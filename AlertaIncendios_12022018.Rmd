@@ -372,8 +372,22 @@ for (i in 1:dim(unicos)[1]){
     resumen<-rbind(resumen,nf)
 }}
 
-Situni<-unique(resumen$Sitio)
-tablex<-subset(mySC,mySC$NAME==Situni)
+Situni<-as.character(unique(resumen$Sitio))
+mySCt<-as.data.frame(mySC)
+
+bichos<-NULL
+for (y in 1:length(Situni)) {
+  t1<-subset(mySCt,mySCt$NAME==Situni[y])
+  t2<-subset(resumen,resumen$Sitio==Situni[y])
+  t3<-cbind(t1,t2)
+  bichos<-rbind(bichos,t3)
+}
+
+bicho<-cbind(bichos[,2:3],bichos[,6:8],orden=bichos[,16])
+bicho<-bicho[order(bicho$orden),]
+bicho<-bicho[,-6]
+
+bicho<-iconv.data.frame(bicho,from="UTF8",to="latin1")
 
 
 #name1<-gsub('.*/(.*)','\\1',resumen$FolderPath)
@@ -489,7 +503,25 @@ kable(compi, col.names = coln) %>%
 **AAVC**   = Áreas de Alto Valor para la Conservación.
    
 ***
+
+#### Aspectos relevantes de los Sitios en riesgo:  
   
+  
+
+```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
+
+#coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Sitio","Tipo de protección","Distancia al foco (km)")
+#kable(compi, row.names = NA,col.names = coln)
+
+
+coln<-c("Sitio","Nombre","Anfibios","Reptiles","Mamìferos")
+
+kable(bicho, col.names = coln) 
+
+``` 
+  
+  
+***  
 ## Mapa interactivo de la distribución de focos registrados a menos de 5 kilometros de Sitios de Conservasión:
 
 <!-- as.character(spa$Name) -->
