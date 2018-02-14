@@ -550,10 +550,16 @@ nicp<-iconv.data.frame(as.data.frame(as.character(myICP@data[,4])),from="UTF8",t
 naavc<-iconv.data.frame(as.data.frame(as.character(myAAVC@data[,4])),from="UTF8",to="latin1")
 
 
-leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImagery) %>%
-     addCircles(data = spa,radius = 5000 ,fill = T, fillOpacity = .08,stroke = T, color = "#FF0000",
+
+leaflet(width = 800, height = 600) %>% 
+  
+      addProviderTiles(providers$Esri.WorldImagery, group ="Satélite") %>%
+      addProviderTiles(providers$OpenStreetMap, group = "Temático") %>%
+
+     
+      addCircles(data = spa,radius = 5000 ,fill = T, fillOpacity = .08,stroke = T, color = "#FF0000",
                 popup = paste("Foco: ", as.character(spa$Name) ), group = "SIDCO") %>%
-    # setView(lng = min(spa$longitude), lat = min(spa$latitude), zoom = 7) %>%
+  
      fitBounds(lng1=min(spa$longitude),lat1=min(spa$latitude),lng2=max(spa$longitude),lat2=max(spa$latitude))%>%
 
      addCircles(data = spa,radius = 5,fill = T,stroke = TRUE, color = "#FF0000",
@@ -563,9 +569,6 @@ leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImag
      addCircles(data = sMODIS,radius = 50,fill = T,stroke = TRUE, color = "#FFB233",
                 popup = paste("Fecha: ", as.character(sMODIS$acq_date)), group = "Punto de calor MODIS 48h") %>%
   
-     addPolygons(data = myReg, fill = F, stroke = TRUE, color = "#000000",dashArray = "3",highlightOptions = highlightOptions(color = "white", weight = 2), popup = paste("Región: "," : ", as.character(myReg$NOMBRE)), group = "Límite Regional") %>%
-     # addPolygons(data = myRCP, fill = F, stroke = TRUE, color = "#000000",dashArray = "3",highlightOptions = highlightOptions(color = "white", weight = 2),popup = paste("Comuna: "," : ", as.character(myRCP$Comuna)), group = "Límite Comunal") %>%
-
      addPolygons(data = myASP, fill = TRUE, stroke = TRUE, color = "#12D502", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(tasp[,1])," : ", as.character(nasp[,1])), group = "SNASPE") %>%
      addPolygons(data = mySN, fill = TRUE, stroke = TRUE, color = "#FFFFFF", highlightOptions = highlightOptions(color = "white", weight = 2),
@@ -579,10 +582,13 @@ leaflet(width = 800, height = 600) %>% addProviderTiles(providers$Esri.WorldImag
      addPolygons(data = myAAVC, fill = TRUE, stroke = TRUE, color = "#E204D8", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(taavc[,1])," : ", as.character(naavc[,1])), group = "AAVC") %>%
 
-    addLegend("bottomright", colors = c("#FF0000","#FFB233","#000000","#12D502","#FFFFFF","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","Puntos de calor","Límites Administrativos","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%
+    addLegend("bottomright", colors = c("#FF0000","#FFB233","#12D502","#FFFFFF","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","Puntos de calor","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%
     
-  addLayersControl(overlayGroups = c("SIDCO","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","Límite Regional","SNASPE","SN","BNP","SP","ICP","AAVC"),options = layersControlOptions(collapsed = FALSE))%>%
-     hideGroup(c("Límite Regional","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC"))
+    addLayersControl(baseGroups = c("Satélite", "Temático"),
+      
+    overlayGroups = c("SIDCO","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC"),
+                   options = layersControlOptions(collapsed = FALSE))%>%
+    hideGroup(c("Límite Regional","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC"))
 
 
 
