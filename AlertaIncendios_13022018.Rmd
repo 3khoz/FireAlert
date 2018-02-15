@@ -505,11 +505,12 @@ kable(compi, col.names = coln) %>%
    
 ***
 
-![](barra.jpg)
+
 
 #### Aspectos relevantes de los Sitios en riesgo:  
+
   
-  
+![](barra.jpg)  
 
 ```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
 
