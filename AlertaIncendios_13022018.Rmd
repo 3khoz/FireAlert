@@ -8,8 +8,8 @@
 
 ---
 Format: ![Alt Text](url)
-title: Sitios de conservación en potencial riesgo ante los incendios forestales actuales
-author: "UNIDAD DE MONITOREO y PREDICCIÓN (COE GASP) CONAF"  
+title: Sitios de conservación en potencial riesgo ante incendios forestales actuales
+author: "UNIDAD DE MONITOREO GERENCIA DE ÁREAS SILVESTRES PROTEGIDAS DEL ESTADO - DEPARTAMENTO DE PLANIFICACIÓN Y DESARROLLO"  
 output: html_document
 --- 
 
