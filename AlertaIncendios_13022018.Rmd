@@ -511,6 +511,8 @@ kable(compi, col.names = coln) %>%
 
   
 ![](barra.jpg)  
+  
+***
 
 ```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
 
