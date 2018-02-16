@@ -11,3 +11,6 @@ por los focos de incendios actuales y entrega el valor ecológicos de las mismas
 El sitio fue desarrollado en lenguaje R y Markdown.  
 
 Contacto autor: ignacio.diaz.h@gmail.com
+
+
+***Los mapas publicados en este sitio que se refieran o relacionen con los límites y fronteras de Chile no comprometen en modo alguno al Estado de Chile, de acuerdo al Artículo 2º, letra g del DFL. Nº 83 de 1979, del Ministerio de Relaciones Exteriores***
