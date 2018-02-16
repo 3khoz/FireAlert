@@ -599,22 +599,34 @@ leaflet(width = 800, height = 600) %>%
 
 ***
 
-### Fuente de datos
+### Fuente de datos  
 
-Focos de incendio: [Sistema de Información Digital para Control de Operación (SIDCO)](http://sidco.conaf.cl/login/index.php)  
-Puntos de calor VIIRS y MODIS: [EARTHDATA NASA](https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/active-fire-data)  
-Límites Sistema Nacional de Áreas Silvestres Protegidas del Estado (SNASPE): [Ministerio de Bienes Nacionales](http://www.ide.cl/descarga/capas/item/sistema-nacional-de-areas-silvestres-protegidas-del-estado-snaspe.html)  
-Límites Santuario de la Naturaleza (SN): [Consejo de Monumentos Nacionales](http://www.ide.cl/descarga/capas/item/santuarios-de-la-naturaleza.html)  
-Límites Bien Nacional Protegido (BNP): [Ministerio de Bienes Nacionales](http://www.ide.cl/descarga/capas/item/bienes-nacionales-protegidos.html)  
-Límites Sitio Prioritario para la Conservación (SP): [Ministerio del Medio Ambiente](http://www.ide.cl/descarga/capas/item/sitios-prioritarios-de-conservacion-de-la-biodiversidad.html)  
-Límites Iniciatica de Conservación Privada (ICP): [Ministerio del Medio Ambiente](http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14)  
-Límites Áreas de Alto Valor para la Conservación (AAVC):[Ministerio del Medio Ambiente](http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14)  
-Información de Biodiversidad: [Reglamento de Clasificación de Especies (RCE)](http://www.mma.gob.cl/clasificacionespecies/),
-                              [Unión Internacional para la Conservación de la Naturaleza (UICN Red List)](http://www.iucnredlist.org/technical-documents/spatial-data)  
+Focos de incendio: <a href="http://sidco.conaf.cl/login/index.php" target="_blank">Sistema de Información Digital para Control de Operación (SIDCO)</a>  
+
+ 
+Puntos de calor VIIRS y MODIS: <a href="https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/active-fire-data" target="_blank">EARTHDATA NASA</a>  
+
+Límites Sistema Nacional de Áreas Silvestres Protegidas del Estado (SNASPE): <a href="http://www.ide.cl/descarga/capas/item/sistema-nacional-de-areas-silvestres-protegidas-del-estado-snaspe.html" target="_blank">Ministerio de Bienes Nacionales</a>  
+
+Límites Santuario de la Naturaleza (SN): <a href="http://www.ide.cl/descarga/capas/item/santuarios-de-la-naturaleza.html" target="_blank">Consejo de Monumentos Nacionales</a>  
+
+Límites Bien Nacional Protegido (BNP): <a href="http://www.ide.cl/descarga/capas/item/bienes-nacionales-protegidos.html" target="_blank">Ministerio de Bienes Nacionales</a>  
+
+Límites Sitio Prioritario para la Conservación (SP): <a href="http://www.ide.cl/descarga/capas/item/sitios-prioritarios-de-conservacion-de-la-biodiversidad.html" target="_blank">Ministerio del Medio Ambiente</a>  
+
+Límites Iniciatica de Conservación Privada (ICP): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
+
+Límites Áreas de Alto Valor para la Conservación (AAVC): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>
+
+Información de Biodiversidad: <a href="http://www.mma.gob.cl/clasificacionespecies/" target="_blank">Reglamento de Clasificación de Especies (RCE)</a>
+<a href="http://www.iucnredlist.org/technical-documents/spatial-data" target="_blank">Unión Internacional para la Conservación de la Naturaleza (UICN Red List)</a>
+
 
 ***
 <center>
-[![Alt text](github.jpg)](https://github.com/3khoz/FireAlert)
+<a href="https://github.com/3khoz/FireAlert"target="_blank"><img src="github.jpg"/</a>
 </center>
 ***
+  
+  
   
