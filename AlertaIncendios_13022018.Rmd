@@ -528,7 +528,7 @@ kable(bicho, col.names = coln)
   
   
 ***  
-## Mapa interactivo de la distribución de focos registrados a menos de 5 kilometros de Sitios de Conservasión:
+## Mapa interactivo de la distribución de focos registrados a menos de 5 kilometros de Sitios de Conservación:
 
 <!-- as.character(spa$Name) -->
 <!-- iconv.data.frame(as.character(spa$Name),from="UTF8",to="latin1") -->
@@ -602,23 +602,15 @@ leaflet(width = 800, height = 600) %>%
 ### Fuente de datos  
 
 Focos de incendio: <a href="http://sidco.conaf.cl/login/index.php" target="_blank">Sistema de Información Digital para Control de Operación (SIDCO)</a>  
-
- 
 Puntos de calor VIIRS y MODIS: <a href="https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/active-fire-data" target="_blank">EARTHDATA NASA</a>  
-
 Límites Sistema Nacional de Áreas Silvestres Protegidas del Estado (SNASPE): <a href="http://www.ide.cl/descarga/capas/item/sistema-nacional-de-areas-silvestres-protegidas-del-estado-snaspe.html" target="_blank">Ministerio de Bienes Nacionales</a>  
-
 Límites Santuario de la Naturaleza (SN): <a href="http://www.ide.cl/descarga/capas/item/santuarios-de-la-naturaleza.html" target="_blank">Consejo de Monumentos Nacionales</a>  
-
 Límites Bien Nacional Protegido (BNP): <a href="http://www.ide.cl/descarga/capas/item/bienes-nacionales-protegidos.html" target="_blank">Ministerio de Bienes Nacionales</a>  
-
 Límites Sitio Prioritario para la Conservación (SP): <a href="http://www.ide.cl/descarga/capas/item/sitios-prioritarios-de-conservacion-de-la-biodiversidad.html" target="_blank">Ministerio del Medio Ambiente</a>  
-
 Límites Iniciatica de Conservación Privada (ICP): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
-
-Límites Áreas de Alto Valor para la Conservación (AAVC): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>
-
-Información de Biodiversidad: <a href="http://www.mma.gob.cl/clasificacionespecies/" target="_blank">Reglamento de Clasificación de Especies (RCE)</a>
+Límites Áreas de Alto Valor para la Conservación (AAVC): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
+Información de Biodiversidad:  
+<a href="http://www.mma.gob.cl/clasificacionespecies/" target="_blank">Reglamento de Clasificación de Especies (RCE)</a>  
 <a href="http://www.iucnredlist.org/technical-documents/spatial-data" target="_blank">Unión Internacional para la Conservación de la Naturaleza (UICN Red List)</a>
 
 
