@@ -28,7 +28,6 @@ library(sp)
 library(geosphere)
 library(rgeos)
 library(rJava)
-#library(OpenStreetMap)
 library(rjson)
 library(leaflet)
 library(XML)
@@ -118,7 +117,7 @@ projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
 
 ## Cargar coberturas de prioridad
 
-mySC <- geojsonio::geojson_read("data/Proteccion2.json", what = "sp", encoding = "UTF-8")
+mySC <- geojsonio::geojson_read("data/Proteccion3.json", what = "sp", encoding = "UTF-8")
 projection(mySC)<- CRS("+proj=longlat +datum=WGS84")
 mySC_utm<-spTransform(mySC, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
@@ -128,6 +127,7 @@ mySP<-subset(mySC,mySC@data$Tipoc=="SP")
 myICP<-subset(mySC,mySC@data$Tipoc=="ICP")
 myAAVC<-subset(mySC,mySC@data$Tipoc=="AAVC")
 myASP<-subset(mySC,mySC@data$Tipoc=="SNASPE")
+myRB<-subset(mySC,mySC@data$Tipoc=="RB")
 
 nSC<-mySC_utm@data[4]
 
@@ -135,9 +135,6 @@ nSC<-mySC_utm@data[4]
 
 myRCP <- geojsonio::geojson_read("data/union_rpc.json", what = "sp", encoding = "UTF-8")
 projection(myRCP)<- CRS("+proj=longlat +datum=WGS84")
-
-myReg <- geojsonio::geojson_read("data/Regiones.json", what = "sp", encoding = "UTF-8")
-projection(myReg)<- CRS("+proj=longlat +datum=WGS84")
 
 rcp<-over(mySIDCO, myRCP)
 
@@ -197,6 +194,7 @@ for (y in 1:length(Situni)) {
 bicho<-cbind(bichos[,3:4],bichos[,7:9],orden=bichos[,17])
 bicho<-bicho[order(bicho$orden),]
 bicho<-bicho[,-6]
+bicho<-unique(bicho)
 bicho<-iconv.data.frame(bicho,from="UTF8",to="latin1")
 name1<-resumen$Estado
 compi<-cbind(Incendio=resumen[1],resumen[5:8],Estado=name1,resumen[10:12])
@@ -208,7 +206,6 @@ projection(spa)<- CRS("+proj=longlat +datum=WGS84")
 compi<-iconv.data.frame(compi,from="UTF8",to="latin1")
 
 # ## Descargar HotSpot
-
 
 download.file("https://firms.modaps.eosdis.nasa.gov/active_fire/viirs/text/VNP14IMGTDL_NRT_South_America_48h.csv"
               ,"modis", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
@@ -280,10 +277,15 @@ projection(sVIIRS)<- CRS("+proj=longlat +datum=WGS84")
 critic<-as.numeric(row.names(subset(compi,compi$Distancia.Foco..Km.==0)))
 coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Sitio","Tipo de protección","Distancia al foco (km)")
 
+
 kable(compi, col.names = coln) %>%
-  kable_styling(full_width = F) %>%
-  row_spec(critic[1], bold = T, color="red") %>%
-  row_spec(critic[2], bold = T, color="red")
+  kable_styling("striped", full_width = F) %>%
+  row_spec(critic[1], bold = T, color = "white", background = "#D7261E") %>%
+  row_spec(critic[2], bold = T, color = "white", background = "#D7261E")
+
+
+
+
 
 ```
 
@@ -293,7 +295,8 @@ kable(compi, col.names = coln) %>%
 **BNP**    = Bien Nacional Protegido, 
 **SP**     = Sitio Prioritario para la Conservación, 
 **ICP**    = Iniciatica de Conservación Privada, 
-**AAVC**   = Áreas de Alto Valor para la Conservación.
+**AAVC**   = Áreas de Alto Valor para la Conservación,  
+**RB**     = Reserva de la Biosfera.
    
 ***
 
@@ -329,6 +332,7 @@ tbnp<-iconv.data.frame(as.data.frame(as.character(myBNP@data[,3])),from="UTF8",t
 tsp<-iconv.data.frame(as.data.frame(as.character(mySP@data[,3])),from="UTF8",to="latin1")
 ticp<-iconv.data.frame(as.data.frame(as.character(myICP@data[,3])),from="UTF8",to="latin1")
 taavc<-iconv.data.frame(as.data.frame(as.character(myAAVC@data[,3])),from="UTF8",to="latin1")
+trb<-iconv.data.frame(as.data.frame(as.character(myRB@data[,3])),from="UTF8",to="latin1")
 
 # nombres
 nasp<-iconv.data.frame(as.data.frame(as.character(myASP@data[,4])),from="UTF8",to="latin1")
@@ -337,7 +341,7 @@ nbnp<-iconv.data.frame(as.data.frame(as.character(myBNP@data[,4])),from="UTF8",t
 nsp<-iconv.data.frame(as.data.frame(as.character(mySP@data[,4])),from="UTF8",to="latin1")
 nicp<-iconv.data.frame(as.data.frame(as.character(myICP@data[,4])),from="UTF8",to="latin1")
 naavc<-iconv.data.frame(as.data.frame(as.character(myAAVC@data[,4])),from="UTF8",to="latin1")
-
+nrb<-iconv.data.frame(as.data.frame(as.character(myRB@data[,4])),from="UTF8",to="latin1")
 
 
 leaflet(width = 800, height = 600) %>% 
@@ -370,14 +374,16 @@ leaflet(width = 800, height = 600) %>%
                 popup = paste(as.character(ticp[,1])," : ", as.character(nicp[,1])), group = "ICP") %>%
      addPolygons(data = myAAVC, fill = TRUE, stroke = TRUE, color = "#E204D8", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(taavc[,1])," : ", as.character(naavc[,1])), group = "AAVC") %>%
+     addPolygons(data = myRB, fill = TRUE, stroke = TRUE, color = "#000000", highlightOptions = highlightOptions(color = "white", weight = 2),
+                popup = paste(as.character(trb[,1])," : ", as.character(nrb[,1])), group = "RB") %>%
 
-    addLegend("bottomright", colors = c("#FF0000","#FFB233","#12D502","#FFFFFF","#FCEE07","#E2A904","#049BE2","#E204D8"), labels = c("SIDCO radio: 5 km","Puntos de calor","SNASPE","SN","BNP","SP","ICP","AAVC")) %>%
+    addLegend("bottomright", colors = c("#FF0000","#FFB233","#12D502","#FFFFFF","#FCEE07","#E2A904","#049BE2","#E204D8","#000000"), labels = c("SIDCO radio: 5 km","Puntos de calor","SNASPE","SN","BNP","SP","ICP","AAVC","RB")) %>%
     
     addLayersControl(baseGroups = c("Satélite", "Temático"),
       
-    overlayGroups = c("SIDCO","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC"),
+    overlayGroups = c("SIDCO","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC","RB"),
                    options = layersControlOptions(collapsed = FALSE))%>%
-    hideGroup(c("Límite Regional","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC"))
+    hideGroup(c("Límite Regional","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC","RB"))
 
 
 
