@@ -209,11 +209,12 @@ compi<-iconv.data.frame(compi,from="UTF8",to="latin1")
 
 # ## Descargar HotSpot
 
-download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/viirs/csv/VNP14IMGTDL_NRT_South_America_48h.csv"
+
+download.file("https://firms.modaps.eosdis.nasa.gov/active_fire/viirs/text/VNP14IMGTDL_NRT_South_America_48h.csv"
               ,"modis", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
 
-download.file("https://firms.modaps.eosdis.nasa.gov/data/active_fire/c6/csv/MODIS_C6_South_America_48h.csv"
-              ,"viirs", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+download.file("https://firms.modaps.eosdis.nasa.gov/active_fire/c6/text/MODIS_C6_South_America_48h.csv"
+             ,"viirs", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
 
 modis<-read.csv("modis",sep=",",dec=".",header=T)
 viirs<-read.csv("viirs",sep=",",dec=".",header=T)
