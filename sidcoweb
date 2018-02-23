@@ -2,7 +2,7 @@
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
   <Document>
     <name>SIDCO</name>
-    <description>Actualizado al 23-feb-2018 16:17</description>
+    <description>Actualizado al 23-feb-2018 17:33</description>
     <open>1</open>
     <Schema name="sidco" id="sidco_schema">
       <SimpleField type="string" name="ID">
@@ -1856,15 +1856,15 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>F1089 - LA VINILLA 3</name>
+                <name>355 - GUAGUANCO</name>
                 <styleUrl>#INCENDIO-40</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-113692215</SimpleData>
+                    <SimpleData name="ID">incendio-113696601</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-71.277222,-33.378889,0</coordinates>
+                  <coordinates>-72.210278,-39.037222,0</coordinates>
                 </Point>
               </Placemark>
           </Folder>
@@ -1919,42 +1919,6 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>129 - LA ESTANCIA</name>
-                <styleUrl>#INCENDIO-50</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-113311987</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-73.7075,-42.535833,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
-                <name>202 - REQUEGUA PARADERO 0</name>
-                <styleUrl>#INCENDIO-50</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-113340388</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-70.978833,-34.448167,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
-                <name>334 - RESERVA NACIONAL NALCAS</name>
-                <styleUrl>#INCENDIO-50</styleUrl>
-                <ExtendedData>
-                  <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-109777680</SimpleData>
-                  </SchemaData>
-                </ExtendedData>
-                <Point>
-                  <coordinates>-71.509167,-38.293889,0</coordinates>
-                </Point>
-              </Placemark>
-              <Placemark>
                 <name>396 - RINCONADA DE CHENA</name>
                 <styleUrl>#INCENDIO-50</styleUrl>
                 <ExtendedData>
@@ -1991,20 +1955,56 @@
                 </Point>
               </Placemark>
               <Placemark>
-                <name>733 - DICAO</name>
+                <name>F1089 - LA VINILLA 3</name>
                 <styleUrl>#INCENDIO-50</styleUrl>
                 <ExtendedData>
                   <SchemaData schemaUrl="#sidco_schema">
-                    <SimpleData name="ID">incendio-113691903</SimpleData>
+                    <SimpleData name="ID">incendio-113692215</SimpleData>
                   </SchemaData>
                 </ExtendedData>
                 <Point>
-                  <coordinates>-72.274722,-37.679167,0</coordinates>
+                  <coordinates>-71.277222,-33.378889,0</coordinates>
                 </Point>
               </Placemark>
           </Folder>
           <Folder>
             <name>Extinguido</name>
+              <Placemark>
+                <name>91 - EL TAMBO</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-113722062</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.036028,-31.787556,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>129 - LA ESTANCIA</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-113311987</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-73.7075,-42.535833,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>198 - RECINTO MILITAR 1</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-113059465</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-70.647403,-34.208953,0</coordinates>
+                </Point>
+              </Placemark>
               <Placemark>
                 <name>201 - COSTA DEL SOL 1</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
@@ -2018,6 +2018,30 @@
                 </Point>
               </Placemark>
               <Placemark>
+                <name>202 - REQUEGUA PARADERO 0</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-113340388</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-70.978833,-34.448167,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>334 - RESERVA NACIONAL NALCAS</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-109777680</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.509167,-38.293889,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
                 <name>446 - VILLA FRANCIA 5</name>
                 <styleUrl>#INCENDIO-90</styleUrl>
                 <ExtendedData>
@@ -2027,6 +2051,30 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-71.664444,-35.45225,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>447 - CORINTO</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-113711717</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.861306,-35.282389,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>448 - FUNDO VISTA HERMOSA</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-113715136</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-71.658361,-35.521333,0</coordinates>
                 </Point>
               </Placemark>
               <Placemark>
@@ -2075,6 +2123,30 @@
                 </ExtendedData>
                 <Point>
                   <coordinates>-71.271389,-32.994722,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>732 - CABRERIA</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-113672575</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.437778,-36.528889,0</coordinates>
+                </Point>
+              </Placemark>
+              <Placemark>
+                <name>733 - DICAO</name>
+                <styleUrl>#INCENDIO-90</styleUrl>
+                <ExtendedData>
+                  <SchemaData schemaUrl="#sidco_schema">
+                    <SimpleData name="ID">incendio-113691903</SimpleData>
+                  </SchemaData>
+                </ExtendedData>
+                <Point>
+                  <coordinates>-72.274722,-37.679167,0</coordinates>
                 </Point>
               </Placemark>
           </Folder>

@@ -53,8 +53,8 @@ library(geojsonio)
 
 ## Descarga y lee los datos SIDCO
 
-download.file("http://sidco.conaf.cl/mapa/earth-data.php?key=RCgHMdVM6VomYlj8IDU%2B9dDVAqFnon8jfj4hfRmLQ8U%3D" 
-    ,"sidcoweb", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
+ download.file("http://sidco.conaf.cl/mapa/earth-data.php?key=RCgHMdVM6VomYlj8IDU%2B9dDVAqFnon8jfj4hfRmLQ8U%3D" 
+     ,"sidcoweb", method="auto", quiet = FALSE, mode = "w",cacheOK = TRUE,extra = getOption("download.file.extra"))
 
 doc <- xmlTreeParse("sidcoweb",getDTD=T,addAttributeNamespaces=T)
 arriba = xmlRoot(doc)
@@ -278,15 +278,10 @@ critic<-as.numeric(row.names(subset(compi,compi$Distancia.Foco..Km.==0)))
 coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Sitio","Tipo de protección","Distancia al foco (km)")
 
 
-kable(compi, col.names = coln) %>%
+knitr::kable(compi, col.names = coln) %>%
   kable_styling("striped", full_width = F) %>%
   row_spec(critic[1], bold = T, color = "white", background = "#D7261E") %>%
   row_spec(critic[2], bold = T, color = "white", background = "#D7261E")
-
-
-
-
-
 ```
 
 ***
@@ -383,9 +378,11 @@ leaflet(width = 800, height = 600) %>%
       
     overlayGroups = c("SIDCO","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC","RB"),
                    options = layersControlOptions(collapsed = FALSE))%>%
-    hideGroup(c("Límite Regional","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC","RB"))
-
-
+    hideGroup(c("Límite Regional","Punto de calor VIIRS 48h","Punto de calor MODIS 48h","SNASPE","SN","BNP","SP","ICP","AAVC","RB")) %>%
+    
+    addMeasure(position = "bottomleft", primaryLengthUnit = "meters", primaryAreaUnit = "sqmeters", activeColor = "#3D535D", 
+               completedColor = "#7D4479") %>% 
+    addMiniMap( tiles = providers$OpenStreetMap, toggleDisplay = TRUE,position = "bottomleft",minimized = T)
 
 ```
 
