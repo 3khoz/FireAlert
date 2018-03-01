@@ -106,7 +106,7 @@ mySIDCO_utm<-spTransform(mySIDCO, CRS("+proj=utm +south +zone=19 +datum=WGS84"))
 
 ## Filtrar por limites nacionales
 
-myShape <- geojsonio::geojson_read("data/Chile_continental.json", what = "sp", encoding = "UTF-8")
+myShape <- geojsonio::geojson_read("data/union_rpc.json", what = "sp", encoding = "UTF-8")
 projection(myShape)<- CRS("+proj=longlat +datum=WGS84")
 
 ## Cargar datos SIDCO
@@ -133,9 +133,7 @@ nSC<-mySC_utm@data[4]
 
 ## join de ubicacion
 
-myRCP <- geojsonio::geojson_read("data/union_rpc.json", what = "sp", encoding = "UTF-8")
-projection(myRCP)<- CRS("+proj=longlat +datum=WGS84")
-
+myRCP <- myShape
 rcp<-over(mySIDCO, myRCP)
 
 ## SIDCO
