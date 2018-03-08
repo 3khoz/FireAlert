@@ -339,8 +339,8 @@ kable(bicho, col.names = coln)
 
 # Tipos
 
-ctipo<-4
-cnombre<-5
+ctipo<-3
+cnombre<-4
 
 tasp<-iconv.data.frame(as.data.frame(as.character(myASP@data[,ctipo])),from="UTF8",to="latin1")
 tsn<-iconv.data.frame(as.data.frame(as.character(mySN@data[,ctipo])),from="UTF8",to="latin1")
@@ -406,19 +406,19 @@ leaflet(width = 900, height = 800) %>%
                 popup = paste(as.character(taavc[,1])," : ", as.character(naavc[,1])), group = "AAVC") %>%
      addPolygons(data = myRB, fill = TRUE, stroke = TRUE, color = "#000000", highlightOptions = highlightOptions(color = "white", weight = 2),
                 popup = paste(as.character(trb[,1])," : ", as.character(nrb[,1])), group = "RB") %>%
-     addPolygons(data = NOAL, fill = TRUE, stroke = TRUE, color = "#0008FF", highlightOptions = highlightOptions(color = "white", weight = 2),
+     addPolygons(data = NOAL, fill = TRUE, stroke = TRUE, color = "#0008FF",
                 popup = paste(as.character(tnoal[,1])," : ", as.character(nnoal[,1])), group = "Ruil") %>%
-     addPolygons(data = PIPU, fill = TRUE, stroke = TRUE, color = "#0008FF", highlightOptions = highlightOptions(color = "white", weight = 2),
+     addPolygons(data = PIPU, fill = TRUE, stroke = TRUE, color = "#0008FF",
                 popup = paste(as.character(tpipu[,1])," : ", as.character(npipu[,1])), group = "Pitao") %>%
-     addPolygons(data = GOKE, fill = TRUE, stroke = TRUE, color = "#0008FF", highlightOptions = highlightOptions(color = "white", weight = 2),
+     addPolygons(data = GOKE, fill = TRUE, stroke = TRUE, color = "#0008FF",
                 popup = paste(as.character(tgoke[,1])," : ", as.character(ngoke[,1])), group = "Keule") %>%
-     addPolygons(data = FICU, fill = TRUE, stroke = TRUE, color = "#0008FF", highlightOptions = highlightOptions(color = "white", weight = 2),
+     addPolygons(data = FICU, fill = TRUE, stroke = TRUE, color = "#0008FF",
                 popup = paste(as.character(tficu[,1])," : ", as.character(nficu[,1])), group = "Alerce") %>%
-     addPolygons(data = ARAR, fill = TRUE, stroke = TRUE, color = "#0008FF", highlightOptions = highlightOptions(color = "white", weight = 2),
+     addPolygons(data = ARAR, fill = TRUE, stroke = TRUE, color = "#0008FF",
                 popup = paste(as.character(tarar[,1])," : ", as.character(narar[,1])), group = "Araucaria") %>%
-     addPolygons(data = BEBE, fill = TRUE, stroke = TRUE, color = "#0008FF", highlightOptions = highlightOptions(color = "white", weight = 2),
+     addPolygons(data = BEBE, fill = TRUE, stroke = TRUE, color = "#0008FF",
                 popup = paste(as.character(tbebe[,1])," : ", as.character(nbebe[,1])), group = "Belloto del sur") %>%
-     addPolygons(data = BEMI, fill = TRUE, stroke = TRUE, color = "#0008FF", highlightOptions = highlightOptions(color = "white", weight = 2),
+     addPolygons(data = BEMI, fill = TRUE, stroke = TRUE, color = "#0008FF",
                 popup = paste(as.character(tbemi[,1])," : ", as.character(nbemi[,1])), group = "Belloto del norte") %>%
 
     addLegend("bottomleft", colors = c("#FF0000","#FC6707","#12D502","#FFFFFF","#FCEE07","#0F6600","#049BE2","#E204D8","#000000","#0008FF"), labels = c("SIDCO radio: 5 km","Puntos de calor 48h","SNASPE","SN","BNP","SP","ICP","AAVC","RB","EMN")) %>%
