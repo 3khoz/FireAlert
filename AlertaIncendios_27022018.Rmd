@@ -291,7 +291,7 @@ projection(sVIIRS)<- CRS("+proj=longlat +datum=WGS84")
 ```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
 
 critic<-as.numeric(row.names(subset(compi,compi$Distancia.Foco..Km.==0)))
-coln<-c("Foco","RegiÃ³n","Provincia","Comuna","Estado actual","Nombre","Tipo de protecciÃ³n","Distancia al foco (km)")
+coln<-c("Foco","Región","Provincia","Comuna","Estado actual","Nombre","Tipo de protección","Distancia al foco (km)")
 
 
 knitr::kable(compi, col.names = coln) %>%
@@ -324,7 +324,7 @@ knitr::kable(compi, col.names = coln) %>%
 ```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
 
 bicho<-unique(bicho)
-coln<-c("Sitio","Nombre","Anfibios","Reptiles","MamÃ¬feros")
+coln<-c("Sitio","Nombre","Anfibios","Reptiles","Mamíferos")
 kable(bicho, col.names = coln) 
 
 ``` 
