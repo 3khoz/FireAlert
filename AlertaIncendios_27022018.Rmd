@@ -1,8 +1,8 @@
 
 ---
 Format: ![Alt Text](url)
-title: Sitios de conservaci√≥n en potencial riesgo ante incendios forestales actuales
-author: "UNIDAD DE MONITOREO Y PREDICCI√ìN - Comit√© de Operaciones de Emergencia"  
+title: Sitios de conservaciÛn en potencial riesgo ante incendios forestales actuales
+author: "UNIDAD DE MONITOREO Y PREDICCI”N - ComitÈ de Operaciones de Emergencia"  
 output: html_document
 --- 
 
@@ -283,10 +283,10 @@ projection(sVIIRS)<- CRS("+proj=longlat +datum=WGS84")
 #  
 #  
 
-#### El d√≠a de hoy se han detectado **`r format(length(unique(compi$Name)))`** focos de incendios que se encuentra a menos de 5 km de **`r format(length(unique(compi$Sitio)))`** sitios de conservaci√≥n distribuidos en **`r format(length(unique(compi$Region)))`** regiones
+#### El dÌa de hoy se han detectado **`r format(length(unique(compi$Name)))`** focos de incendios que se encuentra a menos de 5 km de **`r format(length(unique(compi$Sitio)))`** sitios de conservaciÛn distribuidos en **`r format(length(unique(compi$Region)))`** regiones
 
 ***
-#### Resumen de los sitios que actualmente presentan afectaci√≥n potencial:  
+#### Resumen de los sitios que actualmente presentan afectaciÛn potencial:  
 
 ```{r echo = FALSE,results="asis",message = FALSE, warning = FALSE}
 
@@ -301,12 +301,12 @@ knitr::kable(compi, col.names = coln) %>%
 ```
 
 ***
-**SNASPE** = Sistema Nacional de √Åreas Silvestres Protegidas del Estado, 
+**SNASPE** = Sistema Nacional de ¡reas Silvestres Protegidas del Estado, 
 **SN**     = Santuario de la Naturaleza, 
 **BNP**    = Bien Nacional Protegido, 
-**SP**     = Sitio Prioritario para la Conservaci√≥n, 
-**ICP**    = Iniciativa de Conservaci√≥n Privada, 
-**AAVC**   = √Åreas de Alto Valor para la Conservaci√≥n,  
+**SP**     = Sitio Prioritario para la ConservaciÛn, 
+**ICP**    = Iniciativa de ConservaciÛn Privada, 
+**AAVC**   = ¡reas de Alto Valor para la ConservaciÛn,  
 **RB**     = Reserva de la Biosfera,
 **EMN**    = Especie Monumento Natural.
    
@@ -331,7 +331,7 @@ kable(bicho, col.names = coln)
   
   
 ***  
-## Mapa interactivo de la distribuci√≥n de focos registrados a menos de 5 kilometros de Sitios de Conservaci√≥n:
+## Mapa interactivo de la distribuciÛn de focos registrados a menos de 5 kilometros de Sitios de ConservaciÛn:
 
 
 
@@ -376,8 +376,8 @@ nbemi<-iconv.data.frame(as.data.frame(as.character(BEMI@data[,cnombre])),from="U
 
 leaflet(width = 900, height = 800) %>% 
   
-      addProviderTiles(providers$Esri.WorldImagery, group ="Sat√©lite") %>%
-      addProviderTiles(providers$OpenStreetMap, group = "Tem√°tico") %>%
+      addProviderTiles(providers$Esri.WorldImagery, group ="SatÈlite") %>%
+      addProviderTiles(providers$OpenStreetMap, group = "Tem·tico") %>%
 
      
       addCircles(data = spa,radius = 5000 ,fill = T, fillOpacity = .08,stroke = T, color = "#FF0000",
@@ -423,7 +423,7 @@ leaflet(width = 900, height = 800) %>%
 
     addLegend("bottomleft", colors = c("#FF0000","#FC6707","#12D502","#FFFFFF","#FCEE07","#0F6600","#049BE2","#E204D8","#000000","#0008FF"), labels = c("SIDCO radio: 5 km","Puntos de calor 48h","SNASPE","SN","BNP","SP","ICP","AAVC","RB","EMN")) %>%
     
-    addLayersControl(baseGroups = c("Sat√©lite", "Tem√°tico"),
+    addLayersControl(baseGroups = c("SatÈlite", "Tem·tico"),
       
     overlayGroups = c("SIDCO","Puntos de calor 48h","SNASPE","SN","BNP","SP","ICP","AAVC","RB","Ruil","Pitao","Keule","Alerce","Araucaria","Belloto del sur","Belloto del norte"),
                    options = layersControlOptions(collapsed = FALSE))%>%
@@ -439,26 +439,25 @@ leaflet(width = 900, height = 800) %>%
 
 ### Fuente de datos  
 
-Focos de incendio: <a href="http://sidco.conaf.cl/login/index.php" target="_blank">Sistema de Informaci√≥n Digital para Control de Operaci√≥n (SIDCO)</a>  
+Focos de incendio: <a href="http://sidco.conaf.cl/login/index.php" target="_blank">Sistema de InformaciÛn Digital para Control de OperaciÛn (SIDCO)</a>  
 Puntos de calor: <a href="https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/active-fire-data" target="_blank">EARTHDATA NASA</a>  
-L√≠mites Sistema Nacional de √Åreas Silvestres Protegidas del Estado (SNASPE): <a href="http://www.ide.cl/descarga/capas/item/sistema-nacional-de-areas-silvestres-protegidas-del-estado-snaspe.html" target="_blank">Ministerio de Bienes Nacionales</a>  
-L√≠mites Santuario de la Naturaleza (SN): <a href="http://www.ide.cl/descarga/capas/item/santuarios-de-la-naturaleza.html" target="_blank">Consejo de Monumentos Nacionales</a>  
-L√≠mites Bienes Nacionales Protegidos (BNP): <a href="http://www.ide.cl/descarga/capas/item/bienes-nacionales-protegidos.html" target="_blank">Ministerio de Bienes Nacionales</a>  
-L√≠mites Sitios Prioritarios para la Conservaci√≥n (SP): <a href="http://www.ide.cl/descarga/capas/item/sitios-prioritarios-de-conservacion-de-la-biodiversidad.html" target="_blank">Ministerio del Medio Ambiente</a>  
-L√≠mites Iniciativas de Conservaci√≥n Privada (ICP): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
-L√≠mites √Åreas de Alto Valor para la Conservaci√≥n (AAVC): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
-L√≠mites Reservas de la Biosfera (RB): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
-L√≠mites Especies Monumento Natural (EMN): <a href="https://sit.conaf.cl/" target="_blank">CONAF</a>  
-Informaci√≥n de Biodiversidad:  
-<a href="http://www.mma.gob.cl/clasificacionespecies/" target="_blank">Reglamento de Clasificaci√≥n de Especies (RCE)</a>  
-<a href="http://www.iucnredlist.org/technical-documents/spatial-data" target="_blank">Uni√≥n Internacional para la Conservaci√≥n de la Naturaleza (UICN Red List)</a>
+LÌmites Sistema Nacional de ¡reas Silvestres Protegidas del Estado (SNASPE): <a href="http://www.ide.cl/descarga/capas/item/sistema-nacional-de-areas-silvestres-protegidas-del-estado-snaspe.html" target="_blank">Ministerio de Bienes Nacionales</a>  
+LÌmites Santuario de la Naturaleza (SN): <a href="http://www.ide.cl/descarga/capas/item/santuarios-de-la-naturaleza.html" target="_blank">Consejo de Monumentos Nacionales</a>  
+LÌmites Bienes Nacionales Protegidos (BNP): <a href="http://www.ide.cl/descarga/capas/item/bienes-nacionales-protegidos.html" target="_blank">Ministerio de Bienes Nacionales</a>  
+LÌmites Sitios Prioritarios para la ConservaciÛn (SP): <a href="http://www.ide.cl/descarga/capas/item/sitios-prioritarios-de-conservacion-de-la-biodiversidad.html" target="_blank">Ministerio del Medio Ambiente</a>  
+LÌmites Iniciativas de ConservaciÛn Privada (ICP): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
+LÌmites ¡reas de Alto Valor para la ConservaciÛn (AAVC): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
+LÌmites Reservas de la Biosfera (RB): <a href="http://bdrnap.mma.gob.cl/buscador-rnap/#/busqueda?p=14" target="_blank">Ministerio del Medio Ambiente</a>  
+LÌmites Especies Monumento Natural (EMN): <a href="https://sit.conaf.cl/" target="_blank">CONAF</a>  
+InformaciÛn de Biodiversidad:  
+<a href="http://www.mma.gob.cl/clasificacionespecies/" target="_blank">Reglamento de ClasificaciÛn de Especies (RCE)</a>  
+<a href="http://www.iucnredlist.org/technical-documents/spatial-data" target="_blank">UniÛn Internacional para la ConservaciÛn de la Naturaleza (UICN Red List)</a>
 
 
 ***
 <center>
-<a href="https://github.com/3khoz/FireAlert"target="_blank"><img src="github.jpg"/</a>
+<a href="https://github.com/3khoz/FireAlert/blob/master"target="_blank"><img src="github.jpg"/</a>
 </center>
 ***
-  
-  
+
   
