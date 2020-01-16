@@ -1,7 +1,6 @@
 ## Sistema de monitoreo de Sitios de conservación en potencial riesgo ante incendios forestales actuales
 
-Mantención de código: Ignacio Díaz H. y Diego Valencia D.  
-Mantención de bases de datos: Italo Pérez C. 
+Mantención de código: Ignacio Díaz-H., Daniel Burguer y Diego Valencia D.  
   
 El programa fue desarrollado bajo el marco del Comité de Operaciones de Emergencia (COE)  
 del Departamento de Planificación y Desarrollo de la Gerencia de Áreas Silvestres Protegidas del Estado (GASP).  
